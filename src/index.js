@@ -1,9 +1,10 @@
 import getCountries from "./js/getCountries.js"
 
-let countries;
+Window._cacheVLCountriesAPI = {}
 
 getCountries().then(countriesAnswer=>{
-    console.log(countriesAnswer)
+    Window._cacheVLCountriesAPI.countries = countriesAnswer
 })
 
-console.log(countries)
+
+

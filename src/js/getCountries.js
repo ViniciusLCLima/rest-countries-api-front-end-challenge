@@ -13,18 +13,15 @@ const getCountries = async () => {
 const getStreamData = async (stream) => {
     const reader = stream.getReader()
     const chunks = []
-    console.log(chunks)
     async function getData(){
         const {done, value} = await reader.read()
         if (done){
             return
         }
         chunks.push(value)
-        console.log("hello")
         return getData()
         }
     await getData()
-    console.log(JSON.stringify(chunks))
     return chunks
 }
 
