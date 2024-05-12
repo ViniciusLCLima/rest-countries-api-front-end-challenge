@@ -1,10 +1,3 @@
-import getCountries from "./js/getCountries.js"
+import app from './js/app.js'
 
-Window._cacheVLCountriesAPI = {}
-
-getCountries().then(countriesAnswer=>{
-    Window._cacheVLCountriesAPI.countries = countriesAnswer
-})
-
-
-
+app()
