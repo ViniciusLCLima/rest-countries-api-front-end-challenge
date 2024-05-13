@@ -16,7 +16,15 @@
         <main>
             <form>
                 <label for="searchInput">Search for a country:</label><input type="text" name="search" placeholder="Search for a country" id="searchInput"/>
-                <label for="dropDownFilter">Filter by region:</label><select type="text" name="region" placeholder="Filter by region" id="dropDownFilter"><option value="" disabled selected hidden>Filter by region</option></select>
+                <label for="dropDownFilter">Filter by region:</label>
+                <select type="text" name="region" placeholder="Filter by region" id="dropDownFilter">
+                    <option value="" disabled selected hidden>Filter by region</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Americas">America</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Europe">Europe</option>
+                    <option value="Oceania">Oceania</option>
+                </select>
             </form>
             <section id="cardsContainer">
             </section>
