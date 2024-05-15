@@ -8,6 +8,7 @@ module.exports = merge({
         filename: 'index.html',
         inject: 'body',
     })],
+    devtool: 'source-map',
     mode: 'development',
     output:{
         filename: 'main.js',
