@@ -27,7 +27,7 @@ const renderCards = (countries) =>{
     const cardsContainer = document.querySelector('#cardsContainer')
     console.log("hi")
     countries.forEach(country=>{
-        console.log(country)
+        console.log(country.name.common)
         cardsContainer.appendChild(getCard(country))
     })
 }
