@@ -19,7 +19,7 @@ const renderDetails = (countryCommonName) => {
     main.replaceChildren()
     const backBtn = document.createElement('a')
     backBtn.setAttribute('href', "#")
-    backBtn.addEventListener('click', history.back)
+    backBtn.addEventListener('click', ()=> history.back())
     backBtn.textContent = 'Back'
     main.appendChild(backBtn)
     const country = getCountry(countryCommonName)
