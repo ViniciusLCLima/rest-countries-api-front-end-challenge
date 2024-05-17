@@ -1,8 +1,13 @@
 {
     "rewrites": [
       {
+        "source": "/countries/main.([a-z0-9]+).js",
+        "destination": "main.c6b7a8f083f6191c8674.js"
+      },
+      {
         "source": "/(.*)", 
-        "destination": "./src/index.js*"
+        "destination": "index.c6b7a8f083f6191c8674.html"
       }
-    ]
+    ],
+    "outputDirectory":"./build"
   }
