@@ -6,7 +6,7 @@ const dropDownFilter = document.querySelector('#dropDownFilter')
 const filterCountries = () =>{
     const {countries} = Window._cacheVLCountriesAPI
     const {name, region} = Window._cacheVLCountriesAPI.filter
-    const filteredCountries = countries.filter(country => (country.region == region || region == '') && (country.name.common.toLowerCase().includes(name.toLowercase) || country.name.official.toLowerCase().includes(name)))
+    const filteredCountries = countries.filter(country => (country.region == region || region == '') && (country.name.common.toLowerCase().includes(name.toLowerCase()) || country.name.official.toLowerCase().includes(name.toLowerCase())))
     const cardsContainer = document.querySelector('#cardsContainer')
     cardsContainer.replaceChildren()
     renderCards(filteredCountries)

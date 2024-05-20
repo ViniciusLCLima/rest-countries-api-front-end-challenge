@@ -7,15 +7,16 @@ export default async function app(){
     Window._cacheVLCountriesAPI = {}
     Window._cacheVLCountriesAPI.countries = await getCountries()
     Window._cacheVLCountriesAPI.filter = {}
-    let urlPathname = decodeURI(new URL(location).pathname)
+    const url = new URL(location)
+    let decodedUrlPathname = decodeURI(url.pathname)
     switch (true){
-        case '/'== urlPathname:
+        case '/'== decodedUrlPathname:
             settleFilter()
             renderCards(Window._cacheVLCountriesAPI.countries)
             break
-        case /^\/countries\/[a-zA-ZÀ-ú\s\(),\-Å]+$/.test(urlPathname):
+        case /^\/countries\/[a-zA-ZÀ-ú\s\(),\-Å]+$/.test(decodedUrlPathname):
             const regexpLastPathPart = /(?<=\/)[a-zA-ZÀ-ú\s\(),\-Å]+$/
-            const REQUESTED_COUNTRY_NAME = urlPathname.match(regexpLastPathPart)[0]
+            const REQUESTED_COUNTRY_NAME = decodedUrlPathname.match(regexpLastPathPart)[0]
             console.log(REQUESTED_COUNTRY_NAME)
             renderDetails(REQUESTED_COUNTRY_NAME)
             break
