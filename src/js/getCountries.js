@@ -11,6 +11,7 @@ const getCountries = async () => {
 
 
 const getStreamData = async (stream) => {
+    console.log('requested countries')
     const reader = stream.getReader()
     const chunks = []
     async function getData(){

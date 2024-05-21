@@ -1,4 +1,5 @@
 import {getCountryImg, getCountryInfosContainer} from './helpers.js'
+import {handleCountryClick} from './helpers.js'
 
 const getCountryNativeName = (country) =>{
     const NATIVE_NAME_KEY = Object.keys(country.languages)[0]
@@ -6,28 +7,40 @@ const getCountryNativeName = (country) =>{
 }
 
 const getBorderCountry = (cca3) =>{
-    return Window._cacheVLCountriesAPI.countries.find(country => country.cca3 === cca3)
+    return Window.vLCountriesAPI.countries.find(country => country.cca3 === cca3)
 }
 
 const getCountry = (countryCommonName)=>{
-    return Window._cacheVLCountriesAPI.countries.find(country => country.name.common.toLowerCase() === countryCommonName.toLowerCase())
+    return Window.vLCountriesAPI.countries.find(country => country.name.common.toLowerCase() === countryCommonName.toLowerCase())
 }
 
-const renderDetails = (countryCommonName) => {
+const renderDetails = (countryCommonName, app) => {
+    document.querySelector('Form').setAttribute('hidden', true)
+    const cardsContainer = document.querySelector('#cardsContainer')
+    if (cardsContainer){
+        cardsContainer.remove()
+    }
     const main = document.querySelector('main')
-    main.id = 'countryDetails'
-    main.replaceChildren()
+    const countryDetailsContainer = document.createElement('div')
+    countryDetailsContainer.id = 'countryDetails'
     const backBtn = document.createElement('a')
     backBtn.setAttribute('href', "#")
-    backBtn.addEventListener('click', ()=> history.back())
+    backBtn.addEventListener('click', ()=> {
+        if (Window.vLCountriesAPI.lastVisitedPages.length>=1){
+            window.history.pushState({}, "", location.origin + Window.vLCountriesAPI.lastVisitedPages.pop())
+            app()
+            return
+        }
+        history.back()
+    })
     backBtn.textContent = 'Back'
-    main.appendChild(backBtn)
+    countryDetailsContainer.appendChild(backBtn)
     const country = getCountry(countryCommonName)
     const img = getCountryImg(country)
-    main.appendChild(img)
+    countryDetailsContainer.appendChild(img)
     const header = document.createElement('h2')
     header.textContent = country.name.common
-    main.appendChild(header)
+    countryDetailsContainer.appendChild(header)
     const nativeName = getCountryNativeName(country)
     const countryInfos = [
         {
@@ -64,7 +77,7 @@ const renderDetails = (countryCommonName) => {
         },
     ]
     const countryInfosContainer = getCountryInfosContainer(countryInfos)
-    main.appendChild(countryInfosContainer)
+    countryDetailsContainer.appendChild(countryInfosContainer)
     const borderCountriesDiv = document.createElement('div')
     const borderCountriesTitleSpan = document.createElement('span')
     borderCountriesTitleSpan.classList.add('infoTitle')
@@ -72,16 +85,22 @@ const renderDetails = (countryCommonName) => {
     borderCountriesDiv.appendChild(borderCountriesTitleSpan)
     const borderCountriesBtnsDiv = document.createElement('div')
     const baseUrl = new URL(location).origin
-    for (const borderCountryCca3 of country.borders){
-        const borderCountry = getBorderCountry(borderCountryCca3)
-        const btn = document.createElement('a')
-        btn.setAttribute('href',`${baseUrl}/countries/${borderCountry.name.common}`)
-        btn.classList.add('border-country-btn', 'btn')
-        btn.textContent = borderCountry.name.common
-        borderCountriesBtnsDiv.appendChild(btn)
+    if (country.borders){
+        for (const borderCountryCca3 of country.borders){
+            const borderCountry = getBorderCountry(borderCountryCca3)
+            const btn = document.createElement('a')
+            btn.addEventListener('click', e=>{
+                handleCountryClick(e)
+                app()
+            })
+            btn.setAttribute('href',`${baseUrl}/countries/${borderCountry.name.common}`)
+            btn.classList.add('border-country-btn', 'btn')
+            btn.textContent = borderCountry.name.common
+            borderCountriesBtnsDiv.appendChild(btn)
+        }
     }
     borderCountriesDiv.appendChild(borderCountriesBtnsDiv)
-    main.appendChild(borderCountriesDiv)
+    main.appendChild(countryDetailsContainer)
 }
 
 export default renderDetails

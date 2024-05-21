@@ -1,7 +1,14 @@
-import {getCountryImg, getCountryInfosContainer} from './helpers.js'
+import {getCountryImg, getCountryInfosContainer, handleCountryClick} from './helpers.js'
 
-const getCard = (country)=>{
+
+
+const getCard = (country, app)=>{
+    document.querySelector('form').setAttribute('hidden', false)
     const card = document.createElement('a')
+    card.addEventListener('click', e => {
+        handleCountryClick(e)
+        app()
+    })
     const flag = getCountryImg(country)
     card.appendChild(flag)
     const name = document.createElement('h2')
@@ -23,12 +30,16 @@ const getCard = (country)=>{
     return card
 }
 
-const renderCards = (countries) =>{
-    const cardsContainer = document.querySelector('#cardsContainer')
+const renderCards = (countries, app) =>{
+    const countryDetails = document.querySelector("#countryDetails")
+    if (countryDetails) countryDetails.remove()
+    const cardsContainer = document.createElement('section')
+    cardsContainer.id = 'cardsContainer'
     countries.forEach(country=>{
         console.log(country.name.common)
-        cardsContainer.appendChild(getCard(country))
+        cardsContainer.appendChild(getCard(country, app))
     })
+    document.querySelector('main').appendChild(cardsContainer)
 }
 
 export default renderCards

@@ -4,8 +4,8 @@ const searchInput = document.querySelector('#searchInput')
 const dropDownFilter = document.querySelector('#dropDownFilter')
 
 const filterCountries = () =>{
-    const {countries} = Window._cacheVLCountriesAPI
-    const {name, region} = Window._cacheVLCountriesAPI.filter
+    const {countries} = Window.vLCountriesAPI
+    const {name, region} = Window.vLCountriesAPI.filter
     const filteredCountries = countries.filter(country => (country.region == region || region == '') && (country.name.common.toLowerCase().includes(name.toLowerCase()) || country.name.official.toLowerCase().includes(name.toLowerCase())))
     const cardsContainer = document.querySelector('#cardsContainer')
     cardsContainer.replaceChildren()
@@ -17,8 +17,8 @@ const handleFilterChange = ()=>{
     url.searchParams.set('name', searchInput.value)
     url.searchParams.set('region', dropDownFilter.value)
     window.history.pushState({}, "", url)
-    Window._cacheVLCountriesAPI.filter.name = searchInput.value
-    Window._cacheVLCountriesAPI.filter.region = dropDownFilter.value
+    Window.vLCountriesAPI.filter.name = searchInput.value
+    Window.vLCountriesAPI.filter.region = dropDownFilter.value
     filterCountries()
 }
 

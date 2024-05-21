@@ -21,3 +21,9 @@ export const getCountryInfosContainer = (countryInfos) =>{
     }
     return infosContainer
 }
+
+export const handleCountryClick = evt =>{
+    evt.preventDefault()
+    const newUrl = new URL(evt.currentTarget.href)
+    window.history.pushState({}, "", newUrl)
+}
