@@ -1,15 +1,3 @@
-const getCountries = async () => {
-    const response = await fetch("https://restcountries.com/v3.1/all")
-    const responseData = await getStreamData(response.body)
-    const decoder = new TextDecoder()
-    let decodedResponse = "";
-    for (const chunk of responseData){
-        decodedResponse+=decoder.decode(chunk)
-    }
-    return JSON.parse(decodedResponse);
-}
-
-
 const getStreamData = async (stream) => {
     console.log('requested countries')
     const reader = stream.getReader()
@@ -24,6 +12,23 @@ const getStreamData = async (stream) => {
         }
     await getData()
     return chunks
+}
+
+const getCountries = async () => {
+    try{
+        const response = await fetch("https://restcountries.com/v3.1/all")
+    } catch(err) {
+        throw err
+    }
+    console.log("passed")
+    console.log(response)
+    const responseData = await getStreamData(response.body)
+    const decoder = new TextDecoder()
+    let decodedResponse = "";
+    for (const chunk of responseData){
+        decodedResponse+=decoder.decode(chunk)
+    }
+    return JSON.parse(decodedResponse);
 }
 
 export default getCountries;

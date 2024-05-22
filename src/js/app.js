@@ -6,7 +6,6 @@ import renderDetails from "./renderDetails.js"
 if (typeof Window.vLCountriesAPI == "undefined") {
     Window.vLCountriesAPI = {}
 }
-console.log("HIIIII")
 
 export default async function app(){
     console.log("app executed")
@@ -19,7 +18,14 @@ export default async function app(){
     }
     Window.vLCountriesAPI.actualPage = (url.pathname)
     Window.vLCountriesAPI.filter = (typeof Window.vLCountriesAPI.filter == "undefined")? {} : Window.vLCountriesAPI.filter
-    Window.vLCountriesAPI.countries = (typeof Window.vLCountriesAPI.countries == "undefined") ? await getCountries() : Window.vLCountriesAPI.countries
+    while (!Window.vLCountriesAPI.countries) {
+        try{
+            Window.vLCountriesAPI.countries =  await getCountries()
+        } catch (err){
+            console.log(err)
+            console.log('Unable to get countries data, trying again...')
+        }
+    }
 
     
     console.log(url)

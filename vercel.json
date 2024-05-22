@@ -2,11 +2,11 @@
     "rewrites": [
       {
         "source": "/countries/main.([a-z0-9]+).js",
-        "destination": "main.3069376ce7cf5e2a5f34.js"
+        "destination": "main.cfbd4ca9e1c9ad466634.js"
       },
       {
         "source": "/(.*)", 
-        "destination": "index.3069376ce7cf5e2a5f34.html"
+        "destination": "index.cfbd4ca9e1c9ad466634.html"
       }
     ],
     "outputDirectory":"./build"

@@ -76,6 +76,7 @@ const renderDetails = (countryCommonName, app) => {
             val:Object.keys(country.languages).map(key => country.languages[key]).reverse().join(', ')
         },
     ]
+    console.log(country)
     const countryInfosContainer = getCountryInfosContainer(countryInfos)
     countryDetailsContainer.appendChild(countryInfosContainer)
     const borderCountriesDiv = document.createElement('div')
@@ -100,6 +101,7 @@ const renderDetails = (countryCommonName, app) => {
         }
     }
     borderCountriesDiv.appendChild(borderCountriesBtnsDiv)
+    countryDetailsContainer.appendChild(borderCountriesDiv)
     main.appendChild(countryDetailsContainer)
 }
 
