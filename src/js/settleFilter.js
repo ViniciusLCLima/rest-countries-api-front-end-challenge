@@ -3,13 +3,11 @@ import renderCards from './renderCards.js'
 const searchInput = document.querySelector('#searchInput')
 const dropDownFilter = document.querySelector('#dropDownFilter')
 
-const filterCountries = () =>{
+const getFilteredCountries = () =>{
     const {countries} = Window.vLCountriesAPI
     const {name, region} = Window.vLCountriesAPI.filter
-    const filteredCountries = countries.filter(country => (country.region == region || region == '') && (country.name.common.toLowerCase().includes(name.toLowerCase()) || country.name.official.toLowerCase().includes(name.toLowerCase())))
-    const cardsContainer = document.querySelector('#cardsContainer')
-    cardsContainer.replaceChildren()
-    renderCards(filteredCountries)
+    const filteredCountries = (name||region) ? countries.filter(country => (country.region == region || region == '') && (country.name.common.toLowerCase().includes(name.toLowerCase()) || country.name.official.toLowerCase().includes(name.toLowerCase()))): countries
+    return filteredCountries;
 }
 
 const handleFilterChange = ()=>{
@@ -19,12 +17,15 @@ const handleFilterChange = ()=>{
     window.history.pushState({}, "", url)
     Window.vLCountriesAPI.filter.name = searchInput.value
     Window.vLCountriesAPI.filter.region = dropDownFilter.value
-    filterCountries()
+    renderCards(getFilteredCountries())
 }
 
-const settleFilter = () =>{
+const settleFilter = (params) =>{
+    Window.vLCountriesAPI.filter.name = params.get('name')
+    Window.vLCountriesAPI.filter.region = params.get('region')
     dropDownFilter.addEventListener('change', handleFilterChange)
     searchInput.addEventListener('change', handleFilterChange)
+    Window.vLCountriesAPI.filteredCountries = getFilteredCountries()
 }
 
 export default settleFilter

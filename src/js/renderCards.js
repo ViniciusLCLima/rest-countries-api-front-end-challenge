@@ -3,7 +3,7 @@ import {getCountryImg, getCountryInfosContainer, handleCountryClick} from './hel
 
 
 const getCard = (country, app)=>{
-    document.querySelector('form').setAttribute('hidden', false)
+    document.querySelector('form').removeAttribute('hidden')
     const card = document.createElement('a')
     card.addEventListener('click', e => {
         handleCountryClick(e)
@@ -31,14 +31,22 @@ const getCard = (country, app)=>{
 }
 
 const renderCards = (countries, app) =>{
+    let cardsContainer = document.querySelector('#cardsContainer')
+    if (cardsContainer){
+        if (cardsContainer.hasChildNodes()){
+            cardsContainer.replaceChildren()
+        }
+    } else {
+        cardsContainer = document.createElement('section')
+        cardsContainer.id = 'cardsContainer'
+    }
     const countryDetails = document.querySelector("#countryDetails")
     if (countryDetails) countryDetails.remove()
-    const cardsContainer = document.createElement('section')
-    cardsContainer.id = 'cardsContainer'
     countries.forEach(country=>{
         console.log(country.name.common)
         cardsContainer.appendChild(getCard(country, app))
     })
+    
     document.querySelector('main').appendChild(cardsContainer)
 }
 

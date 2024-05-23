@@ -15,8 +15,9 @@ const getStreamData = async (stream) => {
 }
 
 const getCountries = async () => {
+    let response
     try{
-        const response = await fetch("https://restcountries.com/v3.1/all")
+        response = await fetch("https://restcountries.com/v3.1/all")
     } catch(err) {
         throw err
     }

@@ -15,7 +15,7 @@ const getCountry = (countryCommonName)=>{
 }
 
 const renderDetails = (countryCommonName, app) => {
-    document.querySelector('Form').setAttribute('hidden', true)
+    document.querySelector('Form').setAttribute('hidden', '')
     const cardsContainer = document.querySelector('#cardsContainer')
     if (cardsContainer){
         cardsContainer.remove()
@@ -99,8 +99,13 @@ const renderDetails = (countryCommonName, app) => {
             btn.textContent = borderCountry.name.common
             borderCountriesBtnsDiv.appendChild(btn)
         }
+        borderCountriesDiv.appendChild(borderCountriesBtnsDiv)
+    } else{
+        const noBorderCountriesMsg = document.createElement('span')
+        noBorderCountriesMsg.classList.add('no-border-countries-msg')
+        noBorderCountriesMsg.textContent = "None"
+        borderCountriesDiv.appendChild(noBorderCountriesMsg)
     }
-    borderCountriesDiv.appendChild(borderCountriesBtnsDiv)
     countryDetailsContainer.appendChild(borderCountriesDiv)
     main.appendChild(countryDetailsContainer)
 }
