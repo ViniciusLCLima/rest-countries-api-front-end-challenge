@@ -10,21 +10,21 @@ const getFilteredCountries = () =>{
     return filteredCountries;
 }
 
-const handleFilterChange = ()=>{
+const handleFilterChange = (app)=>{
     const url = new URL(location)
     url.searchParams.set('name', searchInput.value)
     url.searchParams.set('region', dropDownFilter.value)
     window.history.pushState({}, "", url)
     Window.vLCountriesAPI.filter.name = searchInput.value
     Window.vLCountriesAPI.filter.region = dropDownFilter.value
-    renderCards(getFilteredCountries())
+    app()
 }
 
-const settleFilter = (params) =>{
+const settleFilter = (params,app) =>{
     Window.vLCountriesAPI.filter.name = params.get('name')
     Window.vLCountriesAPI.filter.region = params.get('region')
-    dropDownFilter.addEventListener('change', handleFilterChange)
-    searchInput.addEventListener('change', handleFilterChange)
+    dropDownFilter.addEventListener('change', e => handleFilterChange(app))
+    searchInput.addEventListener('change', e => handleFilterChange(app))
     Window.vLCountriesAPI.filteredCountries = getFilteredCountries()
 }
 

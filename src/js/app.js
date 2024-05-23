@@ -35,7 +35,7 @@ export default async function app(){
     
     switch (true){
         case '/'== decodedUrlPathname:
-            settleFilter(url.searchParams)
+            settleFilter(url.searchParams, app)
             renderCards(Window.vLCountriesAPI.filteredCountries,app)
             break
         case /^\/countries\/[a-zA-ZÀ-ú\s\(),\-Å]+$/.test(decodedUrlPathname):
