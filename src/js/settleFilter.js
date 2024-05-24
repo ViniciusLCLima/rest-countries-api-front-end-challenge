@@ -23,6 +23,11 @@ const handleFilterChange = (app)=>{
 const settleFilter = (params,app) =>{
     Window.vLCountriesAPI.filter.name = params.get('name')
     Window.vLCountriesAPI.filter.region = params.get('region')
+    const form = document.querySelector('form')
+    form.addEventListener('submit', e => {
+        handleFilterChange(app)
+        e.preventDefault()
+    })
     dropDownFilter.addEventListener('change', e => handleFilterChange(app))
     searchInput.addEventListener('change', e => handleFilterChange(app))
     Window.vLCountriesAPI.filteredCountries = getFilteredCountries()
