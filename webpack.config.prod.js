@@ -5,13 +5,13 @@ const { merge } = require('webpack-merge')
 module.exports = merge({
     plugins: [new HtmlWebpackPlugin({
         template: './src/template.html',
-        filename: 'index.[hash].html',
+        filename: 'index.html',
         inject: 'body',
         showErrors: false
     })],
     mode: 'production',
     output:{
-        filename: '[name].[hash].js',
+        filename: '[name].js',
         path: __dirname + '/build'
     }
 }, commonConfig)
