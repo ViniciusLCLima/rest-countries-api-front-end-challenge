@@ -1,16 +1,15 @@
-/* fonts */
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;1,6..12,300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,600;1,6..12,600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,800;1,6..12,800&display=swap');
-
-html{
-    font-family: 'Nunito Sans';
-    font-weight: 300;
-    font-size: 14px;
+/* Reset */
+body {
+    margin: 0px
 }
 
-#countryDetails{
-    font-size: 16px
+button {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	outline: inherit;
 }
 
 /* Colors and shadows */
@@ -19,10 +18,60 @@ html{
     --backgroundColor: hsl(0, 0%, 98%);
     --textColor: hsl(200, 15%, 8%);
     --inputColor: hsl(0, 0%, 52%);
+    --shadow: 0px 0px 2px 2px hsla(0, 0%, 0%, 0.1);
+}
+
+/* Universal styling */
+*{
+    background-color:var(--elementsColor)
+}
+
+
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300..800;1,6..12,300&display=swap');
+
+html{
+    font: 300 14px 'Nunito Sans', sans-serif, serif;
+    color: var(--textColor)
+}
+
+#countryDetails{
+    font-size: 16px
 }
 
 /* Header */
+header{
+    display: flex;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+    padding: 20px 3%;
+    position: relative
+}
 
+    header>h1{
+        font-size:1em;
+        font-weight:800;
+        letter-spacing:-0.7px;
+    }
+
+    header> button{
+        font-weight: 400
+    }
+
+        header> button >i{
+            transform: rotate(335deg);
+            margin-right: 10px;
+        }
+
+/* Main content container */
+main{
+    padding: 6% 4.7%;
+    background-color: var(--backgroundColor)
+}
+
+/* Country cards list  */
+
+/* Country details */
 
 /* Load overlay */
 #loadOverlay{
