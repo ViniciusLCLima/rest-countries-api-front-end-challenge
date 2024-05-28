@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html id="countriesPage">
     <head>
         <title>Where in the world?</title>
         <meta name="description" value="See basic information about countries.">
@@ -17,9 +17,14 @@
         </header>
         <main>
             <form>
-                <label for="searchInput">Search for a country:</label><input type="text" name="search" placeholder="Search for a country" id="searchInput"/>
-                <label for="dropDownFilter">Filter by region:</label>
-                <select type="text" name="region" placeholder="Filter by region" id="dropDownFilter">
+                <label for="searchInput">
+                    Search for a country:
+                </label>
+                <input type="text" name="search" placeholder="Search for a country" id="searchInput"/>
+                <label for="dropDownFilter">
+                    Filter by region:
+                </label>
+                <select type="text" name="region" id="dropDownFilter">
                     <option value="" disabled selected hidden>Filter by region</option>
                     <option value="Africa">Africa</option>
                     <option value="Americas">America</option>
@@ -29,8 +34,5 @@
                 </select>
             </form>
         </main>
-        <script>
-            var i = "HELLOOOOU"
-        </script>
     </body>
 </html>

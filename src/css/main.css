@@ -12,25 +12,37 @@ button {
 	outline: inherit;
 }
 
+a{
+    display: block
+}
+
 /* Colors and shadows */
 :root{
     --elementsColor: hsl(0, 0%, 100%);
     --backgroundColor: hsl(0, 0%, 98%);
     --textColor: hsl(200, 15%, 8%);
     --inputColor: hsl(0, 0%, 52%);
-    --shadow: 0px 0px 2px 2px hsla(0, 0%, 0%, 0.1);
+    --shadow: 0px 0px 15px -7px hsla(0, 0%, 0%, 0.35);
+    --headerShadow: 0px 0px 2px 2px hsla(0, 0%, 0%, 0.05);
 }
 
 /* Universal styling */
-*{
-    background-color:var(--elementsColor)
+
+main>*>a,
+main>*>div,
+main>*>input,
+main>*>select{
+    border-radius:5px;
+    background-color:var(--elementsColor);
+    box-shadow: var(--shadow);
+    border: 0px;
 }
 
 
 /* fonts */
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300..800;1,6..12,300&display=swap');
 
-html{
+html#countriesPage{
     font: 300 14px 'Nunito Sans', sans-serif, serif;
     color: var(--textColor)
 }
@@ -43,7 +55,7 @@ html{
 header{
     display: flex;
     justify-content: space-between;
-    box-shadow: var(--shadow);
+    box-shadow: var(--headerShadow);
     padding: 20px 3%;
     position: relative
 }
@@ -68,6 +80,39 @@ main{
     padding: 6% 4.7%;
     background-color: var(--backgroundColor)
 }
+
+/* Form */
+form {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 40px;
+    margin-bottom: 35px;
+}
+
+    form>label{
+        display:none;
+    }
+
+    form>input{
+        width: 100%;
+        height: 3.5em;
+    }
+
+        form>input::before {
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            content: "\f002";
+            font-family: 'FontAwesome 6 Free';
+            font-weight:900;
+        }
+    
+    form>select{
+        padding: 14px 0px 14px 20px;
+        width: 200px;
+        appearance: none;
+    }
+
 
 /* Country cards list  */
 
