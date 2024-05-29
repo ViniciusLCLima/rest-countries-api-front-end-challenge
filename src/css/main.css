@@ -1,3 +1,13 @@
+/* Colors and shadows */
+:root{
+    --elementsColor: hsl(0, 0%, 100%);
+    --backgroundColor: hsl(0, 0%, 98%);
+    --textColor: hsl(200, 15%, 8%);
+    --inputColor: hsl(0, 0%, 52%);
+    --shadow: 0px 0px 15px -7px hsla(0, 0%, 0%, 0.35);
+    --headerShadow: 0px 0px 2px 2px hsla(0, 0%, 0%, 0.05);
+}
+
 /* Reset */
 body {
     margin: 0px
@@ -16,21 +26,14 @@ a{
     display: block
 }
 
-/* Colors and shadows */
-:root{
-    --elementsColor: hsl(0, 0%, 100%);
-    --backgroundColor: hsl(0, 0%, 98%);
-    --textColor: hsl(200, 15%, 8%);
-    --inputColor: hsl(0, 0%, 52%);
-    --shadow: 0px 0px 15px -7px hsla(0, 0%, 0%, 0.35);
-    --headerShadow: 0px 0px 2px 2px hsla(0, 0%, 0%, 0.05);
+main>*>div>input{
+    border: 0px;
 }
 
 /* Universal styling */
 
 main>*>a,
 main>*>div,
-main>*>input,
 main>*>select{
     border-radius:5px;
     background-color:var(--elementsColor);
@@ -38,11 +41,10 @@ main>*>select{
     border: 0px;
 }
 
-
 /* fonts */
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300..800;1,6..12,300&display=swap');
 
-html#countriesPage{
+html#countriesPage, input, select{
     font: 300 14px 'Nunito Sans', sans-serif, serif;
     color: var(--textColor)
 }
@@ -94,18 +96,29 @@ form {
         display:none;
     }
 
-    form>input{
+    form>div{
         width: 100%;
         height: 3.5em;
+        display: flex;
+        align-items: center;
     }
-
-        form>input::before {
-            text-rendering: auto;
-            -webkit-font-smoothing: antialiased;
-            content: "\f002";
-            font-family: 'FontAwesome 6 Free';
-            font-weight:900;
+        form>div>i{
+            padding: 0px 30px;
+            font-size: 1.1em;
         }
+
+        form>div>input{
+            background-color:var(--elementsColor);
+            height: 100%;
+            padding: 0px;
+            width: 100%;
+            font-size:0.8;
+        }
+
+            input#searchInput::placeholder {
+                color: hsl(0 0% 75%);
+                font-weight: 300;
+            }
     
     form>select{
         padding: 14px 0px 14px 20px;
