@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html id="countriesPage">
+<html>
     <head>
         <title>Where in the world?</title>
         <meta name="description" value="See basic information about countries.">
@@ -21,20 +21,22 @@
                     Search for a country:
                 </label>
                 <div>
-                    <i class="fa-solid fa-magnifying-glass" style="color: #bdbdbd;"></i>
+                    <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="text" name="search" placeholder="Search for a country..." id="searchInput"/>
                 </div>
-                <label for="dropDownFilter">
-                    Filter by region:
-                </label>
-                <select type="text" name="region" id="dropDownFilter">
-                    <option value="" disabled selected hidden>Filter by region</option>
-                    <option value="Africa">Africa</option>
-                    <option value="Americas">America</option>
-                    <option value="Asia">Asia</option>
-                    <option value="Europe">Europe</option>
-                    <option value="Oceania">Oceania</option>
-                </select>
+                <div class="select-container" id="regionFilterSelect">
+                    <label for="selectRegionBtn">Filter by region:</label>
+                    <button class="select-btn">
+                        Filter by region:<i class="fa-solid fa-angle-down"></i>
+                    </button>
+                    <ul class="select-options">
+                        <li><input type='Button' value="Africa"/></li>
+                        <li><input type='Button' value="America"/></li>
+                        <li><input type='Button' value="Asia"/></li>
+                        <li><input type='Button' value="Europe"/></li>
+                        <li><input type='Button' value="Oceania"/></li>
+                    </ul>
+                </div>
             </form>
         </main>
     </body>

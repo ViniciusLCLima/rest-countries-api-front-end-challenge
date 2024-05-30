@@ -1,7 +1,7 @@
 import renderCards from './renderCards.js'
 
 const searchInput = document.querySelector('#searchInput')
-const dropDownFilter = document.querySelector('#dropDownFilter')
+const dropDownFilter = document.querySelector('#regionFilterSelect>select-btn')
 
 const getFilteredCountries = () =>{
     const {countries} = Window.vLCountriesAPI
