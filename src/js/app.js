@@ -11,14 +11,18 @@ if (typeof Window.vLCountriesAPI == "undefined") {
 export default async function app(){
     console.log("app executed")
     const url = new URL(location)
-    
+    if (!Window.vLCountriesAPI.isFilterSettled){
+        settleFilter(url.searchParams, renderCards)
+        Window.vLCountriesAPI.isFilterSettled = true
+    }
+
     if (Window.vLCountriesAPI.actualPage){
         Window.vLCountriesAPI.lastVisitedPages.push(Window.vLCountriesAPI.actualPage)
     } else {
         Window.vLCountriesAPI.lastVisitedPages = []
     }
+
     Window.vLCountriesAPI.actualPage = url.pathname
-    Window.vLCountriesAPI.filter = Window.vLCountriesAPI.filter ? Window.vLCountriesAPI.filter : {}
     while (!Window.vLCountriesAPI.countries) {
         try{
             Window.vLCountriesAPI.countries =  await getCountries()
@@ -35,7 +39,6 @@ export default async function app(){
     
     switch (true){
         case '/'== decodedUrlPathname:
-            settleFilter(url.searchParams, app)
             renderCards(Window.vLCountriesAPI.filteredCountries,app)
             break
         case /^\/countries\/[a-zA-ZÀ-ú\s\(),\-Å]+$/.test(decodedUrlPathname):

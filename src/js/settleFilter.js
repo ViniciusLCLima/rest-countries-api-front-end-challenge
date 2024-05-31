@@ -1,36 +1,56 @@
 import renderCards from './renderCards.js'
 
 const searchInput = document.querySelector('#searchInput')
-const dropDownFilter = document.querySelector('#regionFilterSelect>select-btn')
+const selectBtn = document.querySelector('#regionFilterSelect .select-btn')
+const selectOptionsContainer = document.querySelector('#regionFilterSelect .select-options')
+const selectOptions = document.querySelectorAll('#regionFilterSelect .select-options>*>input')
+const regions = ['Europe', 'Americas', 'Africa', 'Asia', 'Oceania']
 
-const getFilteredCountries = () =>{
-    const {countries} = Window.vLCountriesAPI
-    const {name, region} = Window.vLCountriesAPI.filter
-    const filteredCountries = (name||region) ? countries.filter(country => (country.region == region || region == '') && (country.name.common.toLowerCase().includes(name.toLowerCase()) || country.name.official.toLowerCase().includes(name.toLowerCase()))): countries
-    return filteredCountries;
+
+const toggleSelectOptions = () =>{
+    if (selectOptionsContainer.classList.contains('open')){
+        selectOptionsContainer.classList.remove('open')
+    }else{
+        selectOptionsContainer.classList.add('open')
+        selectOptionsContainer.firstChild.firstChild.focus()
+    }
 }
 
-const handleFilterChange = (app)=>{
+const handleFilterChange = (renderCards)=>{
     const url = new URL(location)
     url.searchParams.set('name', searchInput.value)
-    url.searchParams.set('region', dropDownFilter.value)
+    url.searchParams.set('region', selectBtn.value)
     window.history.pushState({}, "", url)
     Window.vLCountriesAPI.filter.name = searchInput.value
-    Window.vLCountriesAPI.filter.region = dropDownFilter.value
-    app()
+    Window.vLCountriesAPI.filter.region = selectBtn.firstChild.textContent
+    renderCards()
 }
 
-const settleFilter = (params,app) =>{
+const settleFilter = (params, renderCards) =>{
+    Window.vLCountriesAPI.filter = {}
     Window.vLCountriesAPI.filter.name = params.get('name')
-    Window.vLCountriesAPI.filter.region = params.get('region')
+    const regionParam = params.get('region')
+    Window.vLCountriesAPI.filter.region = (regions.includes(regionParam))? regionParam: undefined
     const form = document.querySelector('form')
     form.addEventListener('submit', e => {
-        handleFilterChange(app)
+        handleFilterChange(renderCards)
         e.preventDefault()
     })
-    dropDownFilter.addEventListener('change', e => handleFilterChange(app))
-    searchInput.addEventListener('change', e => handleFilterChange(app))
-    Window.vLCountriesAPI.filteredCountries = getFilteredCountries()
+    selectBtn.firstChild.textContent = (Window.vLCountriesAPI.filter.region) ? Window.vLCountriesAPI.filter.region: selectBtn.firstChild.textContent
+    selectBtn.addEventListener('click', e => {
+        e.preventDefault()
+        toggleSelectOptions()   
+    })
+    for (const option of selectOptions){
+        option.addEventListener('click', e=>{
+            e.preventDefault()
+            selectBtn.firstChild.textContent = e.target.value
+            selectBtn.value = e.target.value
+            selectOptionsContainer.classList.remove('open')
+            handleFilterChange(renderCards)
+        })
+    }
+    searchInput.addEventListener('change', e => handleFilterChange(renderCards))
 }
 
 export default settleFilter

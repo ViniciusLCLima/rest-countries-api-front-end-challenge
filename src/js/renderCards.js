@@ -30,7 +30,15 @@ const getCard = (country, app)=>{
     return card
 }
 
-const renderCards = (countries, app) =>{
+const getFilteredCountries = () =>{
+    const {countries} = Window.vLCountriesAPI
+    const {name, region} = Window.vLCountriesAPI.filter
+    const filteredCountries = (name||region) ? countries.filter(country => (country.region == region || region == '') && (country.name.common.toLowerCase().includes(name.toLowerCase()) || country.name.official.toLowerCase().includes(name.toLowerCase()))): countries
+    return filteredCountries;
+}
+
+const renderCards = (app) =>{
+    const countries = getFilteredCountries()
     let cardsContainer = document.querySelector('#cardsContainer')
     if (cardsContainer){
         if (cardsContainer.hasChildNodes()){
