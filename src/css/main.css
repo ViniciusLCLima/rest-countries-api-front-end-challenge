@@ -66,7 +66,7 @@ main>*>div>ul{
         text-align: left;
         height: 100%;
         padding: 0 20px 0px 25px;
-        cursor:pointer;
+        cursor:pointer; 
     }
 
     .select-container>.select-btn>i{
@@ -92,6 +92,7 @@ main>*>div>ul{
         .select-container>.select-options.open{
             display:block;
             opacity: 1;
+<<<<<<< HEAD
             max-height:2000px;
         }
 
@@ -103,7 +104,10 @@ main>*>div>ul{
             width: 100%;
             text-align: left;
             padding: 2.5px 25px;
+<<<<<<< HEAD
             cursor:pointer;
+=======
+>>>>>>> e933c08fd1f0255ce5c1636a1701b9d9b811dca5
         }
 
         .select-container>.select-options>li>input:hover{
