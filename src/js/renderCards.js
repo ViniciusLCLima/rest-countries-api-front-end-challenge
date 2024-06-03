@@ -11,12 +11,15 @@ const getCard = (country, app)=>{
     })
     const flag = getCountryImg(country)
     card.appendChild(flag)
+    const textContainer = document.createElement('div')
     const name = document.createElement('h2')
     name.textContent = country.name.common
     card.appendChild(name)
     const countryInfos = [{
         title: 'Population',
-        val: country.population,
+        val:  new Intl.NumberFormat('en-US').format(
+            country.population,
+          )
     },{
         title: 'Region',
         val: country.region,
@@ -25,7 +28,9 @@ const getCard = (country, app)=>{
         val: country.capital
     }]
     const infosContainer = getCountryInfosContainer(countryInfos)
-    card.appendChild(infosContainer)
+    textContainer.appendChild(name)
+    textContainer.appendChild(infosContainer)
+    card.appendChild(textContainer)
     card.setAttribute('href', `./countries/${country.name.common}`)
     return card
 }

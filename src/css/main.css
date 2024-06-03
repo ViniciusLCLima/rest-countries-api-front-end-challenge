@@ -92,7 +92,6 @@ main>*>div>ul{
         .select-container>.select-options.open{
             display:block;
             opacity: 1;
-<<<<<<< HEAD
             max-height:2000px;
         }
 
@@ -104,10 +103,7 @@ main>*>div>ul{
             width: 100%;
             text-align: left;
             padding: 2.5px 25px;
-<<<<<<< HEAD
             cursor:pointer;
-=======
->>>>>>> e933c08fd1f0255ce5c1636a1701b9d9b811dca5
         }
 
         .select-container>.select-options>li>input:hover{
@@ -197,6 +193,47 @@ form {
 
 
 /* Country cards list  */
+#cardsContainer{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 40px;
+}
+
+    #cardsContainer>a{
+        width: 265px;
+        height: 335px;
+        overflow: hidden;
+        text-decoration: none;
+        color: var(--textColor);
+    }
+
+        #cardsContainer>a>img{
+            width:100%;
+        }
+
+        #cardsContainer>a>div{
+            padding:6px 20px
+        }
+
+        #cardsContainer>a h2{
+            font-weight:800
+        }
+
+        #cardsContainer>a h2{
+            font-weight:800;
+            font-size: 1.2em;
+        }
+
+        #cardsContainer>a .infoTitle{
+            font-weight:600
+        }
+
+            #cardsContainer>a p>div{
+                margin-bottom:5px
+            }
+
+
 
 /* Country details */
 
