@@ -1,4 +1,5 @@
 import {getCountryImg, getCountryInfosContainer, handleCountryClick} from './helpers.js'
+import renderDetails from './renderDetails.js'
 
 
 
@@ -7,9 +8,9 @@ const getCard = (country, app)=>{
     const card = document.createElement('a')
     card.addEventListener('click', e => {
         handleCountryClick(e)
-        app()
+        renderDetails(country.name.common, app)
     })
-    const flag = getCountryImg(country)
+    const flag = getCountryImg(country, '265px', '160px')
     card.appendChild(flag)
     const textContainer = document.createElement('div')
     const name = document.createElement('h2')

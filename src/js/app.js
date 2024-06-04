@@ -39,7 +39,7 @@ export default async function app(){
     
     switch (true){
         case '/'== decodedUrlPathname:
-            renderCards(Window.vLCountriesAPI.filteredCountries,app)
+            renderCards(app)
             break
         case /^\/countries\/[a-zA-ZÀ-ú\s\(),\-Å]+$/.test(decodedUrlPathname):
             const regexpLastPathPart = /(?<=\/)[a-zA-ZÀ-ú\s\(),\-Å]+$/

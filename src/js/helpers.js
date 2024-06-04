@@ -1,4 +1,4 @@
-export const getCountryImg = (country)=>{
+export const getCountryImg = (country, width, height)=>{
     const img = document.createElement('img')
     const titleStr = `${country.name.official}'s flag.`
     const title = document.createElement('title')
@@ -6,8 +6,8 @@ export const getCountryImg = (country)=>{
     title.textContent = titleStr
     desc.textContent = country.flags.alt
     img.setAttribute('src', country.flags.svg)
-    img.setAttribute('width', '265px')
-    img.setAttribute('height', '160px')
+    img.setAttribute('width', width)
+    img.setAttribute('height', height)
     img.setAttribute('alt', country.flags.alt)
     img.addEventListener('error', e=>this.src = country.flags.png)
     // svg.setAttribute('aria-label', `${titleStr} ${country.flags.alt}`)
@@ -46,4 +46,6 @@ export const handleCountryClick = evt =>{
     evt.preventDefault()
     const newUrl = new URL(evt.currentTarget.href)
     window.history.pushState({}, "", newUrl)
+    Window.vLCountriesAPI.lastVisitedPages.push(Window.vLCountriesAPI.actualPage)
+    Window.vLCountriesAPI.actualPage = newUrl.pathName
 }

@@ -20,14 +20,21 @@ const renderDetails = (countryCommonName, app) => {
     if (cardsContainer){
         cardsContainer.remove()
     }
+    let countryDetailsContainer = document.querySelector('#countryDetails')
+    if (countryDetailsContainer){
+        countryDetailsContainer.replaceChildren()
+    } else {
+        countryDetailsContainer = document.createElement('div')
+        countryDetailsContainer.id = 'countryDetails'
+    }
     const main = document.querySelector('main')
-    const countryDetailsContainer = document.createElement('div')
-    countryDetailsContainer.id = 'countryDetails'
     const backBtn = document.createElement('a')
     backBtn.setAttribute('href', "#")
-    backBtn.addEventListener('click', ()=> {
-        if (Window.vLCountriesAPI.lastVisitedPages.length>=1){
-            window.history.pushState({}, "", location.origin + Window.vLCountriesAPI.lastVisitedPages.pop())
+    backBtn.addEventListener('click', e => {
+        e.preventDefault()
+        const numVisitedInThisSite = Window.vLCountriesAPI.lastVisitedPages.length
+        if (numVisitedInThisSite>0){
+            window.history.pushState({}, "", location.origin + Window.vLCountriesAPI.lastVisitedPages[numVisitedInThisSite-1])
             app()
             return
         }
