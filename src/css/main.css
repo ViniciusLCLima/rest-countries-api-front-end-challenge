@@ -24,7 +24,9 @@ button, input[type='button'] {
 }
 
 a{
-    display: block
+    display: block;
+    text-decoration: none;
+    color: inherit;
 }
 
 label{
@@ -37,10 +39,10 @@ main>*>div>input{
 
 /* Universal styling */
 
-main>*>a,
-main>*>div,
-main>*>div>button,
-main>*>div>ul{
+main a,
+main>form>div,
+main>form>div>button,
+main>form>div>ul{
     border-radius:5px;
     background-color:var(--elementsColor);
     box-shadow: var(--shadow);
@@ -236,6 +238,29 @@ form {
 
 
 /* Country details */
+#countryDetails{
+    padding: 5.5% 2.5%;
+}
+
+    #countryDetails>a{
+        margin: 0px 0px 65px 0px;
+        width: 95px;
+        padding: 6px;
+        font-size: 0.9em;
+        text-align: center;
+    }
+
+    #countryDetails>a>i{
+        margin-right:8px
+    }
+
+    #countryDetails>img{
+        width:100%
+    }
+    #countryDetails>h2{
+        margin-top:50px
+    }
+
 
 /* Load overlay */
 #loadOverlay{

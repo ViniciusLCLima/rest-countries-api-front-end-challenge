@@ -29,6 +29,10 @@ const renderDetails = (countryCommonName, app) => {
     }
     const main = document.querySelector('main')
     const backBtn = document.createElement('a')
+    const backArrow = document.createElement('i')
+    backArrow.classList.add('fa-solid', 'fa-arrow-left-long')
+    backBtn.textContent = 'Back'
+    backBtn.insertBefore(backArrow, backBtn.firstChild)
     backBtn.setAttribute('href', "#")
     backBtn.addEventListener('click', e => {
         e.preventDefault()
@@ -40,7 +44,6 @@ const renderDetails = (countryCommonName, app) => {
         }
         history.back()
     })
-    backBtn.textContent = 'Back'
     countryDetailsContainer.appendChild(backBtn)
     const country = getCountry(countryCommonName)
     const img = getCountryImg(country)
