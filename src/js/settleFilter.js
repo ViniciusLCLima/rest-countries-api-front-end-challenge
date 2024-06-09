@@ -18,11 +18,12 @@ const toggleSelectOptions = () =>{
 
 const handleFilterChange = (renderCards)=>{
     const url = new URL(location)
+    const regionFilter = (selectBtn.firstChild.textContent==='Filter by region:')? '': selectBtn.firstChild.textContent
     url.searchParams.set('name', searchInput.value)
-    url.searchParams.set('region', selectBtn.value)
+    url.searchParams.set('region', regionFilter)
     window.history.pushState({}, "", url)
     Window.vLCountriesAPI.filter.name = searchInput.value
-    Window.vLCountriesAPI.filter.region = selectBtn.firstChild.textContent
+    Window.vLCountriesAPI.filter.region = regionFilter
     renderCards()
 }
 

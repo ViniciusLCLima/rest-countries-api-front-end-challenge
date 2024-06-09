@@ -2,7 +2,7 @@ import getCountries from "./getCountries.js"
 import renderCards from "./renderCards.js"
 import settleFilter from "./settleFilter.js"
 import renderDetails from "./renderDetails.js"
-// import countries from "./apidata.js"
+import countries from "./apidata.js"
 
 if (typeof Window.vLCountriesAPI == "undefined") {
     Window.vLCountriesAPI = {}
@@ -29,12 +29,11 @@ export default async function app(){
         } catch (err){
             console.log(err)
             console.log('Unable to get countries data, trying again...')
-            //Window.vLCountriesAPI.countries = countries
+            Window.vLCountriesAPI.countries = countries
         }
     }
 
     
-    console.log(url)
     let decodedUrlPathname = decodeURI(url.pathname)
     
     switch (true){

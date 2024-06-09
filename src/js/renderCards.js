@@ -39,7 +39,9 @@ const getCard = (country, app)=>{
 const getFilteredCountries = () =>{
     const {countries} = Window.vLCountriesAPI
     const {name, region} = Window.vLCountriesAPI.filter
-    const filteredCountries = (name||region) ? countries.filter(country => (country.region == region || region == '') && (country.name.common.toLowerCase().includes(name.toLowerCase()) || country.name.official.toLowerCase().includes(name.toLowerCase()))): countries
+    console.log(name, region)
+    console.log(region)
+    const filteredCountries = (name||region) ? countries.filter(country => (country.region == region || region == '' || region == undefined) && (country.name.common.toLowerCase().includes(name.toLowerCase()))): countries
     return filteredCountries;
 }
 

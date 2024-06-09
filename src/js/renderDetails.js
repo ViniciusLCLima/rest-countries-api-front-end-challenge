@@ -118,7 +118,7 @@ const renderDetails = (countryCommonName, app) => {
     } else{
         const noBorderCountriesMsg = document.createElement('span')
         noBorderCountriesMsg.classList.add('no-border-countries-msg')
-        noBorderCountriesMsg.textContent = "None"
+        noBorderCountriesMsg.textContent = " None"
         borderCountriesDiv.appendChild(noBorderCountriesMsg)
     }
     countryInfosContainer.appendChild(borderCountriesDiv)
