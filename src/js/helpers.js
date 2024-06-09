@@ -27,6 +27,8 @@ export const getCountryImg = (country, width, height)=>{
 
 export const getCountryInfosContainer = (countryInfos) =>{
     const infosContainer = document.createElement('p')
+    let infosBlock = document.createElement('div')
+    infosContainer.appendChild(infosBlock)
     for (const countryInfo of countryInfos){
         const infoDiv = document.createElement('div')
         const titleSpan = document.createElement('span')
@@ -37,7 +39,11 @@ export const getCountryInfosContainer = (countryInfos) =>{
         valSpan.textContent = countryInfo.val
         infoDiv.appendChild(titleSpan)
         infoDiv.appendChild(valSpan)
-        infosContainer.appendChild(infoDiv)
+        if (countryInfo.title == 'Top Level Domain'){
+            infosBlock = document.createElement('div')
+            infosContainer.appendChild(infosBlock)
+        }
+        infosBlock.appendChild(infoDiv)
     }
     return infosContainer
 }

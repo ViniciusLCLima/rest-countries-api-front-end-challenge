@@ -9,6 +9,10 @@
         "destination": "main.css"
       },
       {
+        "source": "countries/main.css",
+        "destination": "main.css"
+      },
+      {
         "source": "/(.*)",
         "destination": "index.html"
       }

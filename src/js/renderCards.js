@@ -54,8 +54,8 @@ const renderCards = (app) =>{
         cardsContainer = document.createElement('section')
         cardsContainer.id = 'cardsContainer'
     }
-    const countryDetails = document.querySelector("#countryDetails")
-    if (countryDetails) countryDetails.remove()
+    const countryDetailsPage = document.querySelector("#countryDetailsPage")
+    if (countryDetailsPage) countryDetailsPage.remove()
     countries.forEach(country=>{
         console.log(country.name.common)
         cardsContainer.appendChild(getCard(country, app))

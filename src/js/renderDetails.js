@@ -15,20 +15,21 @@ const getCountry = (countryCommonName)=>{
 }
 
 const renderDetails = (countryCommonName, app) => {
-    document.querySelector('Form').setAttribute('hidden', '')
+    document.querySelector('Form').setAttribute('hidden', 'hidden')
     const cardsContainer = document.querySelector('#cardsContainer')
     if (cardsContainer){
         cardsContainer.remove()
     }
-    let countryDetailsContainer = document.querySelector('#countryDetails')
-    if (countryDetailsContainer){
-        countryDetailsContainer.replaceChildren()
+    let countryDetailsPage = document.querySelector('#countryDetailsPage')
+    if (countryDetailsPage){
+        countryDetailsPage.replaceChildren()
     } else {
-        countryDetailsContainer = document.createElement('div')
-        countryDetailsContainer.id = 'countryDetails'
+        countryDetailsPage = document.createElement('div')
+        countryDetailsPage.id = 'countryDetailsPage'
     }
     const main = document.querySelector('main')
     const backBtn = document.createElement('a')
+    backBtn.classList.add('btn')
     const backArrow = document.createElement('i')
     backArrow.classList.add('fa-solid', 'fa-arrow-left-long')
     backBtn.textContent = 'Back'
@@ -44,17 +45,20 @@ const renderDetails = (countryCommonName, app) => {
         }
         history.back()
     })
-    countryDetailsContainer.appendChild(backBtn)
+    countryDetailsPage.appendChild(backBtn)
+    const countryDetailsDiv = document.createElement('div')
+    countryDetailsPage.appendChild(countryDetailsDiv)
     const country = getCountry(countryCommonName)
     const img = getCountryImg(country)
-    countryDetailsContainer.appendChild(img)
+    countryDetailsDiv.appendChild(img)
     const header = document.createElement('h2')
     header.textContent = country.name.common
-    countryDetailsContainer.appendChild(header)
+    const countryInfosContainer = document.createElement('div')
+    countryInfosContainer.appendChild(header)
     const nativeName = getCountryNativeName(country)
     const countryInfos = [
         {
-            title:'Native name',
+            title:'Native Name',
             val:nativeName
         },
         {
@@ -87,13 +91,14 @@ const renderDetails = (countryCommonName, app) => {
         },
     ]
     console.log(country)
-    const countryInfosContainer = getCountryInfosContainer(countryInfos)
-    countryDetailsContainer.appendChild(countryInfosContainer)
+    const countryStaticInfos = getCountryInfosContainer(countryInfos)
+    countryInfosContainer.appendChild(countryStaticInfos)
     const borderCountriesDiv = document.createElement('div')
     const borderCountriesTitleSpan = document.createElement('span')
     borderCountriesTitleSpan.classList.add('infoTitle')
     borderCountriesTitleSpan.textContent = 'Border Countries:'
     borderCountriesDiv.appendChild(borderCountriesTitleSpan)
+    borderCountriesDiv.classList.add('border-countries-container')
     const borderCountriesBtnsDiv = document.createElement('div')
     const baseUrl = new URL(location).origin
     if (country.borders){
@@ -116,8 +121,9 @@ const renderDetails = (countryCommonName, app) => {
         noBorderCountriesMsg.textContent = "None"
         borderCountriesDiv.appendChild(noBorderCountriesMsg)
     }
-    countryDetailsContainer.appendChild(borderCountriesDiv)
-    main.appendChild(countryDetailsContainer)
+    countryInfosContainer.appendChild(borderCountriesDiv)
+    countryDetailsDiv.appendChild(countryInfosContainer)
+    main.appendChild(countryDetailsPage)
 }
 
 export default renderDetails

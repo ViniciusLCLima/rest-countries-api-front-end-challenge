@@ -112,6 +112,19 @@ main>form>div>ul{
             background-color: hsl(0, 0%, 70%);
         }
 
+.infoTitle {
+    font-weight: 600;
+}
+
+.btn {
+    padding: 6px;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    width: 88px;
+}
+
 /* fonts */
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300..800;1,6..12,300&display=swap');
 
@@ -238,29 +251,67 @@ form {
 
 
 /* Country details */
-#countryDetails{
+#countryDetailsPage{
     padding: 5.5% 2.5%;
 }
 
-    #countryDetails>a{
+    #countryDetailsPage>a{
         margin: 0px 0px 65px 0px;
-        width: 95px;
-        padding: 6px;
-        font-size: 0.9em;
-        text-align: center;
     }
 
-    #countryDetails>a>i{
-        margin-right:8px
+        #countryDetailsPage>a>i{
+            margin-right:8px
+        }
+
+    #countryDetailsPage>div{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        row-gap: 45px;
     }
 
-    #countryDetails>img{
-        width:100%
-    }
-    #countryDetails>h2{
-        margin-top:50px
-    }
+        #countryDetailsPage>div>img{
+            width:100%
+        }
+        #countryDetailsPage>div h2{
+            margin:0px 0px 27px 0px;
+            font-weight:800
+        }
 
+        #countryDetailsPage>div p{            
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 20em;
+            row-gap: 45px;
+            margin: 0px 0px 45px 0px;
+            font-size: 1.05em;
+        }
+
+        #countryDetailsPage div:has(>.infoTitle):not(:last-child) {
+            margin-bottom: 12px;
+        }
+
+                #countryDetailsPage>div>div>span{        
+                    font-size: 1.2em;
+                    margin-bottom: 21px;
+                    display: inline-block;
+                }
+
+                #countryDetailsPage .border-countries-container>.infoTitle {
+                    display:inline-block;
+                    margin-bottom:20px;
+                }
+
+                #countryDetailsPage .border-countries-container>div{
+                    display: flex;
+                    align-items: stretch;
+                    column-gap: 10px;
+                    row-gap: 20px;
+                    flex-wrap: wrap;
+                }
+
+                
+        
 
 /* Load overlay */
 #loadOverlay{
