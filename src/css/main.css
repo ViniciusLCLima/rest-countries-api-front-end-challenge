@@ -307,11 +307,10 @@ form {
                 }
 
                 #countryDetailsPage .border-countries-container>div{
-                    display: flex;
-                    align-items: stretch;
-                    column-gap: 10px;
-                    row-gap: 20px;
-                    flex-wrap: wrap;
+                    display: grid;
+                    grid-auto-rows: 1fr;
+                    grid-template-columns: repeat(auto-fill, 100px);
+                    gap: 20px 10px;
                 }
 
                 
