@@ -3,6 +3,7 @@ import renderCards from "./renderCards.js"
 import settleFilter from "./settleFilter.js"
 import renderDetails from "./renderDetails.js"
 import countries from "./apidata.js"
+import  makeSearchInputBeFocusedOnAnyBarClick from "./utilListeners.js"
 
 if (typeof Window.vLCountriesAPI == "undefined") {
     Window.vLCountriesAPI = {}
@@ -10,6 +11,7 @@ if (typeof Window.vLCountriesAPI == "undefined") {
 
 export default async function app(){
     console.log("app executed")
+    makeSearchInputBeFocusedOnAnyBarClick()
     const url = new URL(location)
     if (!Window.vLCountriesAPI.isFilterSettled){
         settleFilter(url.searchParams, renderCards)
