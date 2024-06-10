@@ -186,6 +186,11 @@ form {
         display: flex;
         align-items: center;
     }
+
+    form>div:nth-child(2):has(input:focus-visible){
+        outline: chocolate ridge 2px;
+    }
+
         form>div>i{
             padding: 0px 30px;
             font-size: 1.1em;
@@ -199,6 +204,10 @@ form {
             width: 100%;
             font-size:0.8;
         }
+            form>div>input:focus-visible,
+            form>div>input:focus{
+                outline: none
+            }
 
             input#searchInput::placeholder {
                 color: hsl(0 0% 75%);
