@@ -2,7 +2,6 @@ import {getCountryImg, getCountryInfosContainer, handleCountryClick} from './hel
 import renderDetails from './renderDetails.js'
 
 
-
 const getCard = (country, app)=>{
     document.querySelector('form').removeAttribute('hidden')
     const card = document.createElement('a')

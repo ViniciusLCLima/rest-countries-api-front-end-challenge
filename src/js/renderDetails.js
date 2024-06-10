@@ -1,4 +1,4 @@
-import {getCountryImg, getCountryInfosContainer} from './helpers.js'
+import {getCountryImg, getCountryInfosContainer, getCountryCommonNameFromDetailsUrl } from './helpers.js'
 import {handleCountryClick} from './helpers.js'
 
 const getCountryNativeName = (country) =>{
@@ -39,10 +39,12 @@ const renderDetails = (countryCommonName, app) => {
         e.preventDefault()
         const numVisitedInThisSite = Window.vLCountriesAPI.lastVisitedPages.length
         if (numVisitedInThisSite>0){
-            window.history.pushState({}, "", location.origin + Window.vLCountriesAPI.lastVisitedPages[numVisitedInThisSite-1])
-            app()
+            window.history.replaceState({}, '', location.origin + Window.vLCountriesAPI.lastVisitedPages.pop())
+            console.log("HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+            app(true)
             return
         }
+        console.log("BACK@")
         history.back()
     })
     countryDetailsPage.appendChild(backBtn)
@@ -90,7 +92,6 @@ const renderDetails = (countryCommonName, app) => {
             val:Object.keys(country.languages).map(key => country.languages[key]).reverse().join(', ')
         },
     ]
-    console.log(country)
     const countryStaticInfos = getCountryInfosContainer(countryInfos)
     countryInfosContainer.appendChild(countryStaticInfos)
     const borderCountriesDiv = document.createElement('div')
@@ -107,7 +108,9 @@ const renderDetails = (countryCommonName, app) => {
             const btn = document.createElement('a')
             btn.addEventListener('click', e=>{
                 handleCountryClick(e)
-                app()
+                const finalUrlPathname = decodeURI(new URL(e.target.href).pathname)
+                const COUNTRY_COMMON_NAME = getCountryCommonNameFromDetailsUrl(finalUrlPathname)
+                renderDetails(COUNTRY_COMMON_NAME, app)
             })
             btn.setAttribute('href',`${baseUrl}/countries/${borderCountry.name.common}`)
             btn.classList.add('border-country-btn', 'btn')

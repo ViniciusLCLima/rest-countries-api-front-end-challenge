@@ -9,7 +9,7 @@ module.exports = merge({
         inject: 'body',
         showErrors: false
     })],
-    mode: 'production',
+    mode: 'development',
     output:{
         filename: '[name].js',
         path: __dirname + '/build'

@@ -1,3 +1,10 @@
+
+export const getCountryCommonNameFromDetailsUrl = (countryDetailsDecodedPathName)=>{
+    const regexpLastPathPart = /(?<=\/)[a-zA-ZÀ-ú\s\(),\-Å]+$/
+    const REQUESTED_COUNTRY_NAME = countryDetailsDecodedPathName.match(regexpLastPathPart)[0]
+    return REQUESTED_COUNTRY_NAME
+}
+
 export const getCountryImg = (country, width, height)=>{
     const img = document.createElement('img')
     const titleStr = `${country.name.official}'s flag.`
@@ -48,10 +55,10 @@ export const getCountryInfosContainer = (countryInfos) =>{
     return infosContainer
 }
 
-export const handleCountryClick = evt =>{
-    evt.preventDefault()
-    const newUrl = new URL(evt.currentTarget.href)
-    window.history.pushState({}, "", newUrl)
+export const handleCountryClick = e =>{
+    e.preventDefault()
+    const newUrl = new URL(e.currentTarget.href)
+    window.history.replaceState({}, '', newUrl)
     Window.vLCountriesAPI.lastVisitedPages.push(Window.vLCountriesAPI.actualPage)
-    Window.vLCountriesAPI.actualPage = newUrl.pathName
+    Window.vLCountriesAPI.actualPage = newUrl.pathname
 }

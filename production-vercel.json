@@ -1,7 +1,7 @@
 {
     "rewrites": [
       {
-        "source": "/countries/main.js",
+        "source": "/countries/main.([a-z0-9]+).js",
         "destination": "main.js"
       },
       {

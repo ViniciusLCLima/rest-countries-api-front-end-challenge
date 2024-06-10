@@ -4,24 +4,28 @@ import settleFilter from "./settleFilter.js"
 import renderDetails from "./renderDetails.js"
 import countries from "./apidata.js"
 import  makeSearchInputBeFocusedOnAnyBarClick from "./utilListeners.js"
+import {getCountryCommonNameFromDetailsUrl} from "./helpers.js"
 
 if (typeof Window.vLCountriesAPI == "undefined") {
     Window.vLCountriesAPI = {}
 }
 
-export default async function app(){
+export default async function app(cameFromThisSiteBackBtn){
     console.log("app executed")
     makeSearchInputBeFocusedOnAnyBarClick()
     const url = new URL(location)
+    console.log(url)
     if (!Window.vLCountriesAPI.isFilterSettled){
         settleFilter(url.searchParams, renderCards)
         Window.vLCountriesAPI.isFilterSettled = true
     }
 
-    if (Window.vLCountriesAPI.actualPage){
-        Window.vLCountriesAPI.lastVisitedPages.push(Window.vLCountriesAPI.actualPage)
-    } else {
-        Window.vLCountriesAPI.lastVisitedPages = []
+    if (!cameFromThisSiteBackBtn){
+        if (Window.vLCountriesAPI.actualPage){
+            Window.vLCountriesAPI.lastVisitedPages.push(Window.vLCountriesAPI.actualPage)
+        } else {
+            Window.vLCountriesAPI.lastVisitedPages = []
+        }
     }
 
     Window.vLCountriesAPI.actualPage = url.pathname
@@ -43,9 +47,7 @@ export default async function app(){
             renderCards(app)
             break
         case /^\/countries\/[a-zA-ZÀ-ú\s\(),\-Å]+$/.test(decodedUrlPathname):
-            const regexpLastPathPart = /(?<=\/)[a-zA-ZÀ-ú\s\(),\-Å]+$/
-            const REQUESTED_COUNTRY_NAME = decodedUrlPathname.match(regexpLastPathPart)[0]
-            console.log(REQUESTED_COUNTRY_NAME)
+            const REQUESTED_COUNTRY_NAME = getCountryCommonNameFromDetailsUrl(decodedUrlPathname)
             renderDetails(REQUESTED_COUNTRY_NAME, app)
             break
     }
