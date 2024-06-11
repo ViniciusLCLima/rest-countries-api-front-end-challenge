@@ -14,7 +14,7 @@ const getCountry = (countryCommonName)=>{
     return Window.vLCountriesAPI.countries.find(country => country.name.common.toLowerCase() === countryCommonName.toLowerCase())
 }
 
-const renderDetails = (countryCommonName, app) => {
+const renderDetails = (countryCommonName, app, hello) => {
     document.querySelector('Form').setAttribute('hidden', 'hidden')
     const cardsContainer = document.querySelector('#cardsContainer')
     if (cardsContainer){
@@ -40,11 +40,9 @@ const renderDetails = (countryCommonName, app) => {
         const numVisitedInThisSite = Window.vLCountriesAPI.lastVisitedPages.length
         if (numVisitedInThisSite>0){
             window.history.replaceState({}, '', location.origin + Window.vLCountriesAPI.lastVisitedPages.pop())
-            console.log("HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
             app(true)
             return
         }
-        console.log("BACK@")
         history.back()
     })
     countryDetailsPage.appendChild(backBtn)

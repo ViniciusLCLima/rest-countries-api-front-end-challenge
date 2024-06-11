@@ -38,8 +38,6 @@ const getCard = (country, app)=>{
 const getFilteredCountries = () =>{
     const {countries} = Window.vLCountriesAPI
     const {name, region} = Window.vLCountriesAPI.filter
-    console.log(name, region)
-    console.log(region)
     const filteredCountries = (name||region) ? countries.filter(country => (country.region == region || region == '' || region == undefined) && (country.name.common.toLowerCase().includes(name.toLowerCase()))): countries
     return filteredCountries;
 }
@@ -58,7 +56,6 @@ const renderCards = (app) =>{
     const countryDetailsPage = document.querySelector("#countryDetailsPage")
     if (countryDetailsPage) countryDetailsPage.remove()
     countries.forEach(country=>{
-        console.log(country.name.common)
         cardsContainer.appendChild(getCard(country, app))
     })
     

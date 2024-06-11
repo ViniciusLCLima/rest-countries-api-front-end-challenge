@@ -14,9 +14,8 @@ export default async function app(cameFromThisSiteBackBtn){
     console.log("app executed")
     makeSearchInputBeFocusedOnAnyBarClick()
     const url = new URL(location)
-    console.log(url)
     if (!Window.vLCountriesAPI.isFilterSettled){
-        settleFilter(url.searchParams, renderCards)
+        settleFilter(url.searchParams, renderCards, app)
         Window.vLCountriesAPI.isFilterSettled = true
     }
 

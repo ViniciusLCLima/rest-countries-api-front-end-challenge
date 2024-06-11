@@ -21,8 +21,6 @@ const getCountries = async () => {
     } catch(err) {
         throw err
     }
-    console.log("passed")
-    console.log(response)
     const responseData = await getStreamData(response.body)
     const decoder = new TextDecoder()
     let decodedResponse = "";
