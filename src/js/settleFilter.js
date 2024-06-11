@@ -18,7 +18,8 @@ const toggleSelectOptions = () =>{
 
 const handleFilterChange = (renderCards)=>{
     const url = new URL(location)
-    const regionFilter = (selectBtn.firstChild.textContent==='Filter by region:')? '': selectBtn.firstChild.textContent
+    const selectBtnSpan = selectBtn.childNodes[1]
+    const regionFilter = (selectBtnSpan.textContent==='Filter by region:')? '': selectBtnSpan.textContent
     url.searchParams.set('name', searchInput.value)
     url.searchParams.set('region', regionFilter)
     window.history.pushState({}, "", url)
@@ -30,14 +31,15 @@ const handleFilterChange = (renderCards)=>{
 const settleFilter = (params, renderCards) =>{
     Window.vLCountriesAPI.filter = {}
     Window.vLCountriesAPI.filter.name = params.get('name')
+    searchInput.value = Window.vLCountriesAPI.filter.name
     const regionParam = params.get('region')
     Window.vLCountriesAPI.filter.region = (regions.includes(regionParam))? regionParam: undefined
+    selectBtn.firstChild.textContent = (Window.vLCountriesAPI.filter.region) ? Window.vLCountriesAPI.filter.region: selectBtn.firstChild.textContent
     const form = document.querySelector('form')
     form.addEventListener('submit', e => {
         handleFilterChange(renderCards)
         e.preventDefault()
     })
-    selectBtn.firstChild.textContent = (Window.vLCountriesAPI.filter.region) ? Window.vLCountriesAPI.filter.region: selectBtn.firstChild.textContent
     selectBtn.addEventListener('click', e => {
         e.preventDefault()
         toggleSelectOptions()   

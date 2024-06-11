@@ -10,6 +10,7 @@ module.exports = merge({
         showErrors: false
     })],
     mode: 'development',
+    devtool: 'source-map',
     output:{
         filename: '[name].js',
         path: __dirname + '/build'
