@@ -43,6 +43,12 @@ main>*>div>input{
 
 /* Universal styling */
 
+*{
+    transition: 
+        background-color 0.3s,
+        color 0.3s;
+}
+
 main a,
 main>form>div,
 main>form>div>button,
@@ -87,12 +93,15 @@ main>form>div>ul{
         box-sizing:border-box;
         padding:12px 0px;
         list-style-type:none;
-        background-color: white;
         z-index:2000;
         opacity:0;
         overflow: hidden;
         max-height: 0px;
-        transition: all 0.2s;
+        transition:
+        max-height 0.2s,
+        opacity 0.2s,
+        background-color 0.3s linear,
+        color 0.3s linear;
     }
 
         .select-container>.select-options.open{
@@ -145,6 +154,7 @@ html, input{
 header{
     display: flex;
     justify-content: space-between;
+    background-color:var(--elementsColor);
     box-shadow: var(--headerShadow);
     padding: 20px 3%;
     position: relative
@@ -210,13 +220,17 @@ form {
             }
 
             input#searchInput::placeholder {
-                color: hsl(0 0% 75%);
+                color: var(--textColor);
                 font-weight: 300;
             }
     
     form>.select-container{
         font-weight: 400;
         font-size: 0.9em;
+    }
+
+    form>.select-container{
+
     }
 
 

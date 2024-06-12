@@ -5,13 +5,15 @@ import renderDetails from "./renderDetails.js"
 import countries from "./apidata.js"
 import  makeSearchInputBeFocusedOnAnyBarClick from "./utilListeners.js"
 import {getCountryCommonNameFromDetailsUrl} from "./helpers.js"
+import settleModeChanging from "./settle-modes.js"
 
-if (typeof Window.vLCountriesAPI == "undefined") {
+if (!Window.vLCountriesAPI) {
     Window.vLCountriesAPI = {}
 }
 
 export default async function app(cameFromThisSiteBackBtn){
     console.log("app executed")
+    settleModeChanging()
     makeSearchInputBeFocusedOnAnyBarClick()
     const url = new URL(location)
     if (!Window.vLCountriesAPI.isFilterSettled){
