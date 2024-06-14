@@ -45,8 +45,8 @@ main>*>div>input{
 
 *{
     transition: 
-        background-color 0.3s,
-        color 0.3s;
+        background-color 0.1s,
+        color 0.1s;
 }
 
 main a,
@@ -167,7 +167,8 @@ header{
     }
 
     header> button{
-        font-weight: 400
+        font-weight: 400;
+        cursor: pointer
     }
 
         header> button >i{
