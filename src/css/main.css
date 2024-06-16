@@ -7,6 +7,7 @@
     --inputColor: hsl(0, 0%, 52%);
     --shadow: 0px 0px 15px -7px hsla(0, 0%, 0%, 0.35);
     --headerShadow: 0px 0px 2px 2px hsla(0, 0%, 0%, 0.05);
+    --modeTransitionTime: 0.8s
 }
 
 /* Reset */
@@ -41,12 +42,26 @@ main>*>div>input{
     border: 0px;
 }
 
-/* Universal styling */
+/* Special Elements */
 
-*{
+header,
+form>div:nth-child(2),
+form>.select-container>*:not(label),
+#cardsContainer>a,
+#countryDetailsPage>a {
     transition: 
-        background-color 0.1s,
-        color 0.1s;
+        background-color var(--modeTransitionTime),
+        color var(--modeTransitionTime);
+    transform: translateZ(0)
+}
+
+input#searchInput::placeholder{
+    transition: color var(--modeTransitionTime)
+}
+
+main{
+    transition: background-color var(--modeTransitionTime);
+    transform: translateZ(0)
 }
 
 main a,
@@ -59,7 +74,6 @@ main>form>div>ul{
     border: 0px;
 }
 
-/* Special elements */
 .select-container{
     height: 4em
 }
@@ -100,8 +114,8 @@ main>form>div>ul{
         transition:
         max-height 0.2s,
         opacity 0.2s,
-        background-color 0.3s linear,
-        color 0.3s linear;
+        background-color var(--modeTransitionTime),
+        color var(--modeTransitionTime);
     }
 
         .select-container>.select-options.open{
@@ -209,7 +223,7 @@ form {
         }
 
         form>div>input{
-            background-color:var(--elementsColor);
+            background-color:transparent;
             height: 100%;
             padding: 0px;
             width: 100%;
