@@ -1,10 +1,12 @@
 /* Colors and shadows */
 :root{
     --elementsColor: hsl(0, 0%, 100%);
-    --elementsColorTint: hsl(0, 0%, 70%);
+    --elementsColorTint: hsl(0, 0%, 96%);
     --backgroundColor: hsl(0, 0%, 98%);
     --textColor: hsl(200, 15%, 8%);
     --inputColor: hsl(0, 0%, 52%);
+    --oppositeModeBackgroundColor: hsl(209, 23%, 22%);
+    --oppositeModeTextColor: hsl(0, 0%, 100%);
     --shadow: 0px 0px 15px -7px hsla(0, 0%, 0%, 0.35);
     --headerShadow: 0px 0px 2px 2px hsla(0, 0%, 0%, 0.05);
     --modeTransitionTime: 0.8s
@@ -136,7 +138,7 @@ main>form>div>ul{
         }
 
         .select-container>.select-options>li>input:hover{
-            background-color: hsl(0, 0%, 70%);
+            background-color: var(--elementsColorTint);
         }
 
 .infoTitle {
@@ -182,6 +184,17 @@ header{
 
     header> button{
         font-weight: 400;
+        width: 160px;
+        cursor: pointer;
+        transition: 
+            letter-spacing 0.6s,
+            background-color 0.6s;
+        padding: 0.1em 2em;
+        border-radius: 5px;
+    }
+
+    header> button:hover{
+        background-color:var(--elementsColorTint);
         cursor: pointer
     }
 
