@@ -1,7 +1,7 @@
 /* Colors and shadows */
 :root{
     --elementsColor: hsl(0, 0%, 100%);
-    --elementsColorTint: hsl(0, 0%, 96%);
+    --elementsColorTint: hsl(0, 0%, 94%);
     --backgroundColor: hsl(0, 0%, 98%);
     --textColor: hsl(200, 15%, 8%);
     --inputColor: hsl(0, 0%, 52%);
@@ -9,7 +9,8 @@
     --oppositeModeTextColor: hsl(0, 0%, 100%);
     --shadow: 0px 0px 15px -7px hsla(0, 0%, 0%, 0.35);
     --headerShadow: 0px 0px 2px 2px hsla(0, 0%, 0%, 0.05);
-    --modeTransitionTime: 0.8s
+    --modeTransitionTime: 0.8s;
+    --hoverTransitionTime: 0.3s
 }
 
 /* Reset */
@@ -43,6 +44,30 @@ label{
 main>*>div>input{
     border: 0px;
 }
+
+/* Buttons hover and focus effect*/
+
+.select-container>.select-btn:hover,
+.select-container>.select-btn:focus,
+#countryDetailsPage>a:hover,
+#countryDetailsPage>a:focus,
+.border-country-btn:hover,
+.border-country-btn:focus{
+        background-color: var(--elementsColorTint);
+        transition: background-color var(--hoverTransitionTime);
+    }
+
+.select-container>.select-options>li>input:hover,
+.select-container>.select-options>li>input:focus,
+    header> button:hover,
+    header> button:focus {
+        background-color: var(--elementsColorTint);
+    }   
+    
+.select-container>.select-options>li>input,
+header> button{
+        transition: background-color var(--hoverTransitionTime);
+    }
 
 /* Special Elements */
 
@@ -137,10 +162,6 @@ main>form>div>ul{
             cursor:pointer;
         }
 
-        .select-container>.select-options>li>input:hover{
-            background-color: var(--elementsColorTint);
-        }
-
 .infoTitle {
     font-weight: 600;
 }
@@ -176,6 +197,10 @@ header{
     position: relative
 }
 
+    header> button:hover{
+        letter-spacing:0.05em
+    }
+
     header>h1{
         font-size:1em;
         font-weight:800;
@@ -187,15 +212,10 @@ header{
         width: 160px;
         cursor: pointer;
         transition: 
-            letter-spacing 0.6s,
-            background-color 0.6s;
+            letter-spacing var(--hoverTransitionTime),
+            background-color var(--hoverTransitionTime);
         padding: 0.1em 2em;
         border-radius: 5px;
-    }
-
-    header> button:hover{
-        background-color:var(--elementsColorTint);
-        cursor: pointer
     }
 
         header> button >i{
@@ -255,10 +275,6 @@ form {
     form>.select-container{
         font-weight: 400;
         font-size: 0.9em;
-    }
-
-    form>.select-container{
-
     }
 
 
