@@ -86,9 +86,9 @@ input#searchInput::placeholder{
     transition: color var(--modeTransitionTime)
 }
 
-main{
+body{
     transition: background-color var(--modeTransitionTime);
-    transform: translateZ(0)
+    transform: translateZ(0);
 }
 
 main a,
@@ -226,7 +226,11 @@ header{
 /* Main content container */
 main{
     padding: 6% 4.7%;
-    background-color: var(--backgroundColor)
+}
+
+body{
+    background-color: var(--backgroundColor);
+    min-height: 100vh 
 }
 
 /* Form */
