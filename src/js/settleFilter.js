@@ -1,4 +1,4 @@
-import renderCards from './renderCards.js'
+import {renderCards} from './home-page-rendering.js'
 
 const searchInput = document.querySelector('#searchInput')
 const selectBtn = document.querySelector('#regionFilterSelect .select-btn')

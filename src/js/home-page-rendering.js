@@ -3,7 +3,6 @@ import renderDetails from './renderDetails.js'
 
 
 const getCard = (country, app)=>{
-    document.querySelector('form').removeAttribute('hidden')
     const card = document.createElement('a')
     card.addEventListener('click', e => {
         handleCountryClick(e)
@@ -42,24 +41,22 @@ const getFilteredCountries = () =>{
     return filteredCountries;
 }
 
-const renderCards = (app) =>{
+export const renderCards = (app) =>{
     const countries = getFilteredCountries()
     let cardsContainer = document.querySelector('#cardsContainer')
-    if (cardsContainer){
-        if (cardsContainer.hasChildNodes()){
-            cardsContainer.replaceChildren()
-        }
-    } else {
-        cardsContainer = document.createElement('section')
-        cardsContainer.id = 'cardsContainer'
-    }
-    const countryDetailsPage = document.querySelector("#countryDetailsPage")
-    if (countryDetailsPage) countryDetailsPage.remove()
+    if (cardsContainer.hasChildNodes()) cardsContainer.replaceChildren()
     countries.forEach(country=>{
         cardsContainer.appendChild(getCard(country, app))
     })
-    
-    document.querySelector('main').appendChild(cardsContainer)
 }
 
-export default renderCards
+export const renderHome = (app) =>{
+    document.querySelector('form').removeAttribute('hidden')
+    const mainElem = document.querySelector('main')
+    const cardsContainer = document.createElement('section')
+    cardsContainer.id = 'cardsContainer'
+    mainElem.appendChild(cardsContainer)
+    const countryDetailsPage = document.querySelector("#countryDetailsPage")
+    if (countryDetailsPage) countryDetailsPage.remove()
+    renderCards(app)
+}

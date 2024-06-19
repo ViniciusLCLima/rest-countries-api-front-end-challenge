@@ -1,5 +1,5 @@
 import getCountries from "./getCountries.js"
-import renderCards from "./renderCards.js"
+import {renderHome, renderCards} from "./home-page-rendering.js"
 import settleFilter from "./settleFilter.js"
 import renderDetails from "./renderDetails.js"
 import countries from "./apidata.js"
@@ -45,7 +45,7 @@ export default async function app(cameFromThisSiteBackBtn){
     
     switch (true){
         case '/'== decodedUrlPathname:
-            renderCards(app)
+            renderHome(app)
             break
         case /^\/countries\/[a-zA-ZÀ-ú\s\(),\-Å]+$/.test(decodedUrlPathname):
             const REQUESTED_COUNTRY_NAME = getCountryCommonNameFromDetailsUrl(decodedUrlPathname)
