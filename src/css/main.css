@@ -82,11 +82,13 @@ form>.select-container>*:not(label),
     transform: translateZ(0)
 }
 
-input#searchInput::placeholder{
+input#searchInput::placeholder,
+#countryDetailsPage>div{
     transition: color var(--modeTransitionTime)
 }
 
-body{
+body,
+.border-country-btn{
     transition: background-color var(--modeTransitionTime);
     transform: translateZ(0);
 }
