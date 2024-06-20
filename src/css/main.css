@@ -134,7 +134,7 @@ main>form>div>ul{
         margin: 4px 0px;
         position: absolute;
         box-sizing:border-box;
-        padding:12px 0px;
+        padding: 0px;
         list-style-type:none;
         z-index:2000;
         opacity:0;
@@ -145,6 +145,14 @@ main>form>div>ul{
         opacity 0.2s,
         background-color var(--modeTransitionTime),
         color var(--modeTransitionTime);
+    }
+
+    .select-container>.select-options>li:first-child{
+        margin-top:12px
+    }
+
+    .select-container>.select-options>li:last-child{
+        margin-bottom:12px
     }
 
         .select-container>.select-options.open{
