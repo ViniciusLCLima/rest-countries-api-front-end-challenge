@@ -350,9 +350,9 @@ form {
 
     #countryDetailsPage>div{
         display: flex;
-        flex-direction: column;
         flex-wrap: wrap;
         row-gap: 45px;
+        column-gap:120px;
     }
 
         #countryDetailsPage>div>img{
@@ -366,7 +366,7 @@ form {
         #countryDetailsPage>div p{            
             display: flex;
             flex-wrap: wrap;
-            column-gap: 20em;
+            column-gap: 140px;
             row-gap: 45px;
             margin: 0px 0px 45px 0px;
             font-size: 1.05em;
@@ -400,4 +400,22 @@ form {
 /* Load overlay */
 #loadOverlay{
     display:none
+}
+
+
+/* For some screen sizes */
+
+@media (min-width: 1440px){
+
+    #countryDetailsPage {
+        padding: 0.5% 1.5%
+    }
+
+    #countryDetailsPage>div>img{
+        width:560px
+    }
+
+    #countryDetailsPage>div{
+        align-items:center
+    }
 }
