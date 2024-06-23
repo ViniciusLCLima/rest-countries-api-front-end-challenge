@@ -338,6 +338,8 @@ form {
 /* Country details */
 #countryDetailsPage{
     padding: 5.5% 2.5%;
+    max-width: 1400px;
+    margin: 0px auto
 }
 
     #countryDetailsPage>a{
