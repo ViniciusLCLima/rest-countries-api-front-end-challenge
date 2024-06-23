@@ -353,10 +353,13 @@ form {
         flex-wrap: wrap;
         row-gap: 45px;
         column-gap:120px;
+        justify-content: center;
     }
 
         #countryDetailsPage>div>img{
-            width:100%
+            width:100%;
+            max-width: 560px;
+            aspect-ratio: 7/5
         }
         #countryDetailsPage>div h2{
             margin:0px 0px 27px 0px;
@@ -411,11 +414,7 @@ form {
         padding: 0.5% 1.5%
     }
 
-    #countryDetailsPage>div>img{
-        width:560px
-    }
-
-    #countryDetailsPage>div{
-        align-items:center
-    }
+        #countryDetailsPage>div{
+            align-items:center
+        }
 }
