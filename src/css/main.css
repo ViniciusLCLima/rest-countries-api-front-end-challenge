@@ -390,6 +390,7 @@ form {
                 #countryDetailsPage .border-countries-container>.infoTitle {
                     display:inline-block;
                     margin-bottom:20px;
+                    margin-right: 16px;
                 }
 
                 #countryDetailsPage .border-countries-container>div{
@@ -409,6 +410,21 @@ form {
 
 
 /* For some screen sizes */
+@media (min-width: 650px){
+    #countryDetailsPage .border-countries-container{
+        display:flex;
+        align-items: center;
+    }
+
+    #countryDetailsPage .border-countries-container>div{
+        flex-grow: 1
+    }
+
+    #countryDetailsPage .border-countries-container>.infoTitle{
+        margin-bottom:0px
+    }
+}
+
 
 @media (min-width: 1440px){
 
