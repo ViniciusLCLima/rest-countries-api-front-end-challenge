@@ -359,6 +359,7 @@ form {
         row-gap: 45px;
         column-gap:120px;
         justify-content: center;
+        align-items: center;
     }
 
         #countryDetailsPage>div>img{
@@ -455,8 +456,4 @@ form {
         width: 135px;
         height: 35px
     }
-
-        #countryDetailsPage>div{
-            align-items:center
-        }
 }
