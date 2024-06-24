@@ -419,6 +419,10 @@ form {
         font-size: 2.2em
     }
 
+    #countryDetailsPage>div p{
+        margin: 0px 0px 75px 0px
+    }
+
     #countryDetailsPage .border-countries-container{
         display:flex;
         align-items: center;
