@@ -341,19 +341,20 @@ form {
     padding-bottom:15px;
     padding-left: 8px;
     padding-right: 8px;
+    width: fit-content;
     max-width: 1400px;
     margin: 0px auto
 }
 
-    #countryDetailsPage>a{
+    #countryDetailsPage>div:nth-child(1)>a{
         margin: 0px 0px 65px 0px;
     }
 
-        #countryDetailsPage>a>i{
+        #countryDetailsPage>div:nth-child(1)>a>i{
             margin-right:8px
         }
 
-    #countryDetailsPage>div{
+    #countryDetailsPage>div:nth-child(2){
         display: flex;
         flex-wrap: wrap;
         row-gap: 45px;
@@ -452,7 +453,7 @@ form {
 
 @media (min-width: 1440px){
 
-    #countryDetailsPage>a{
+    #countryDetailsPage>div:nth-child(1)>a{
         width: 135px;
         height: 35px
     }

@@ -30,6 +30,7 @@ const renderDetails = (countryCommonName, app, hello) => {
     const main = document.querySelector('main')
     const backBtn = document.createElement('a')
     backBtn.classList.add('btn')
+    const backBtnContainer = document.createElement('div')
     const backArrow = document.createElement('i')
     backArrow.classList.add('fa-solid', 'fa-arrow-left-long')
     backBtn.textContent = 'Back'
@@ -45,7 +46,8 @@ const renderDetails = (countryCommonName, app, hello) => {
         }
         history.back()
     })
-    countryDetailsPage.appendChild(backBtn)
+    backBtnContainer.appendChild(backBtn)
+    countryDetailsPage.appendChild(backBtnContainer)
     const countryDetailsDiv = document.createElement('div')
     countryDetailsPage.appendChild(countryDetailsDiv)
     const country = getCountry(countryCommonName)
