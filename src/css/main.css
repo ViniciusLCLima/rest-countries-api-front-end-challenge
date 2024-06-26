@@ -298,6 +298,7 @@ form {
     justify-content: center;
     flex-wrap: wrap;
     row-gap: 40px;
+    column-gap: 75px
 }
 
     #cardsContainer>a{
@@ -421,7 +422,7 @@ form {
     }
 
     main{
-        padding: 50px 80px;
+        padding: 50px 75px;
     }
 
     #countryDetailsPage {
@@ -450,6 +451,23 @@ form {
     }
 }
 
+@media (min-width: 1050px){
+    form>div:nth-child(2){
+        max-width: 480px
+    }
+}
+
+@media (min-width: 1240px){
+    #cardsContainer{
+        row-gap: 75px;
+        justify-content:space-between
+    }
+
+    #cardsContainer:after{
+        content:"";
+        flex: auto
+    }
+}
 
 @media (min-width: 1440px){
 
