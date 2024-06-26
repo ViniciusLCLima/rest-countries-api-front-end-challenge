@@ -455,6 +455,10 @@ form {
     form>div:nth-child(2){
         max-width: 480px
     }
+
+    form{
+        margin-bottom: 50px;
+    }
 }
 
 @media (min-width: 1240px){
