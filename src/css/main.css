@@ -5,8 +5,7 @@
     --backgroundColor: hsl(0, 0%, 98%);
     --textColor: hsl(200, 15%, 8%);
     --inputColor: hsl(0, 0%, 52%);
-    --oppositeModeBackgroundColor: hsl(209, 23%, 22%);
-    --oppositeModeTextColor: hsl(0, 0%, 100%);
+    --placeholderColor: hsl(0, 0%, 75%);
     --shadow: 0px 0px 15px -7px hsla(0, 0%, 0%, 0.35);
     --headerShadow: 0px 0px 2px 2px hsla(0, 0%, 0%, 0.05);
     --modeTransitionTime: 0.8s;
@@ -282,8 +281,9 @@ form {
             }
 
             input#searchInput::placeholder {
-                color: var(--textColor);
-                font-weight: 300;
+                color: var(--placeholderColor);
+                font-size: 0.8em;
+                font-weight: 500;
             }
     
     form>.select-container{
