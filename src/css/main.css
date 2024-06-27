@@ -218,13 +218,14 @@ header{
 
     header> button{
         font-weight: 400;
-        width: 160px;
         cursor: pointer;
         transition: 
             letter-spacing var(--hoverTransitionTime),
             background-color var(--hoverTransitionTime);
-        padding: 0.1em 2em;
+        padding: 0.1em 1em;
         border-radius: 5px;
+        position: relative;
+        left: 1em;
     }
 
         header> button >i{
@@ -418,6 +419,10 @@ form {
 /* For some screen sizes */
 @media (min-width: 650px){
 
+    header{
+        padding: 5px 75px
+    }
+
     main{
         padding: 50px 75px;
     }
@@ -474,6 +479,10 @@ form {
 
     header>h1{
         font-size:1.8em
+    }
+
+    header>button{
+        font-size: 1.1em
     }
 
     #countryDetailsPage>div:nth-child(1)>a{
