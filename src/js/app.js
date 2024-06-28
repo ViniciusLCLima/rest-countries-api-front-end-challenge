@@ -2,7 +2,7 @@ import getCountries from "./getCountries.js"
 import {renderHome, renderCards} from "./home-page-rendering.js"
 import settleFilter from "./settleFilter.js"
 import renderDetails from "./renderDetails.js"
-import countries from "./apidata.js"
+// import countries from "./apidata.js" This is for testing purposes only.
 import  makeSearchInputBeFocusedOnAnyBarClick from "./utilListeners.js"
 import {getCountryCommonNameFromDetailsUrl} from "./helpers.js"
 import settleModeChanging from "./settle-modes.js"
@@ -36,7 +36,7 @@ export default async function app(cameFromThisSiteBackBtn){
         } catch (err){
             console.log(err)
             console.log('Unable to get countries data, trying again...')
-            Window.vLCountriesAPI.countries = countries
+//            Window.vLCountriesAPI.countries = countries This is for testing purposes only.
         }
     }
 
