@@ -30,7 +30,7 @@ Users should be able to:
 
 ### Screenshot
 
-![App screenshot. Contains a header saying "Where in the world" with a button to change the mode from light to dark and, below it, country cards with country flags and information in a grid.](./App Screen Shot.jpg)
+![App screenshot. Contains a header saying "Where in the world" with a button to change the mode from light to dark and, below it, country cards with country flags and information in a grid.](App-Screen-Shot.png)
 
 ### Links
 
