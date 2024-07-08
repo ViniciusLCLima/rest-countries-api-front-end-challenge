@@ -9,7 +9,8 @@
     --shadow: 0px 0px 15px -7px hsla(0, 0%, 0%, 0.35);
     --headerShadow: 0px 0px 2px 2px hsla(0, 0%, 0%, 0.05);
     --modeTransitionTime: 0.8s;
-    --hoverTransitionTime: 0.3s
+    --hoverTransitionTime: 0.3s;
+    --loadingCircleWidth: 50px;
 }
 
 /* Reset */
@@ -184,6 +185,77 @@ main>form>div>ul{
     width: 88px;
 }
 
+@keyframes emerge{
+    0%{
+        opacity: 0
+    }
+
+    100%{
+        opacity: 1
+    }
+}
+
+@keyframes rotation{
+    100%{
+        transform: rotate(360deg)
+    }
+}
+
+#loadingCircleContainer{
+    position: absolute;
+    height:100%;
+    width: 100%;
+    display: flex;
+}
+
+    #loadingCircleContainer.loaded-appearance{
+        opacity:0;
+        transition: opacity 1s;
+    }
+
+    #loadingCircleContainer.loaded-appearance>#loadingCircle{
+        animation-play-state:paused
+    }
+
+#loadingCircle{
+    height: var(--loadingCircleWidth);
+    width: var(--loadingCircleWidth);
+    border: 1px solid;
+    margin:auto
+}
+    #loadingCircle:not([hidden]){
+        animation:
+            linear 2s forwards infinite rotation,
+            linear .5s 1 emerge;
+    }
+
+    #loadingCircle div,
+    #loadingCircle{
+        border-radius: 50%
+    }
+
+    #loadingCircle,
+    #loadingCircle>div{
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+
+    #loadingCircle>div{
+        --width: calc((30 / 50) * var(--loadingCircleWidth));
+        width: var(--width);
+        height: var(--width);
+        border: calc((10 / 50) * var(--loadingCircleWidth)) solid;
+        border-color: white white black black;
+    }
+
+        #loadingCircle>div>div{
+            --width: calc((30 / 50) * var(--loadingCircleWidth));
+            width: var(--width);
+            height: var(--width);
+            border: calc((0.1 / 50) * var(--loadingCircleWidth)) solid black
+        }
+
 /* fonts */
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300..800;1,6..12,300&display=swap');
 
@@ -235,10 +307,19 @@ header{
 
 /* Main content container */
 main{
-    padding: 25px 18px
+    padding: 25px 18px;
+    flex-grow:1;
+    display: flex;
+    flex-direction: column;
+}
+
+#loadingCircleContainer{
+    margin: -25px -18px;
 }
 
 body{
+    display: flex;
+    flex-direction: column;
     background-color: var(--backgroundColor);
     min-height: 100vh 
 }
@@ -251,6 +332,9 @@ form {
     row-gap: 40px;
     margin-bottom: 35px;
 }
+    form:not([hidden]){
+        animation: 1s 1 emerge;
+    }
 
     form>div:nth-child(2){
         height: 4em;
@@ -294,12 +378,17 @@ form {
 
 
 /* Country cards list  */
+
+
 #cardsContainer{
     display: flex;
+    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     row-gap: 40px;
-    column-gap: 75px
+    column-gap: 75px;
+    flex-grow: 1;
+    animation: 1s 1 emerge;
 }
 
     #cardsContainer>a{
@@ -338,6 +427,7 @@ form {
 
 
 /* Country details */
+
 #countryDetailsPage{
     padding-top: 15px;
     padding-bottom:15px;
@@ -345,7 +435,8 @@ form {
     padding-right: 8px;
     width: fit-content;
     max-width: 1400px;
-    margin: 0px auto
+    margin: 0px auto;
+    animation: 1s 1 emerge;
 }
 
     #countryDetailsPage>div:nth-child(1)>a{
@@ -427,6 +518,10 @@ form {
         padding: 50px 75px;
     }
 
+    #loadingCircleContainer{
+        margin: -50px -75px;
+    }
+
     #countryDetailsPage {
         padding: 30px 0px;
     }
@@ -469,7 +564,7 @@ form {
         justify-content:space-between
     }
 
-    #cardsContainer:after{
+    #cardsContainer:not(#cardsContainer:has(#loadingCircle)):after{
         content:"";
         flex: auto
     }

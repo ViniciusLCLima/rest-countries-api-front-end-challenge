@@ -2,6 +2,8 @@ import {getCountryImg, getCountryInfosContainer, handleCountryClick} from './hel
 import renderDetails from './renderDetails.js'
 
 
+const cardsContainer = document.createElement('section')
+
 const getCard = (country, app)=>{
     const card = document.createElement('a')
     card.addEventListener('click', e => {
@@ -43,7 +45,6 @@ const getFilteredCountries = () =>{
 
 export const renderCards = (app) =>{
     const countries = getFilteredCountries()
-    let cardsContainer = document.querySelector('#cardsContainer')
     if (cardsContainer.hasChildNodes()) cardsContainer.replaceChildren()
     countries.forEach(country=>{
         cardsContainer.appendChild(getCard(country, app))
@@ -53,9 +54,15 @@ export const renderCards = (app) =>{
 export const renderHome = (app) =>{
     document.querySelector('form').removeAttribute('hidden')
     const mainElem = document.querySelector('main')
-    const cardsContainer = document.createElement('section')
     cardsContainer.id = 'cardsContainer'
-    mainElem.appendChild(cardsContainer)
+    const loadingCircleContainer = document.querySelector('#loadingCircleContainer')
+    if (loadingCircleContainer){
+        loadingCircleContainer.addEventListener('transitionend', ()=>{
+            mainElem.appendChild(cardsContainer)
+        })
+    } else{
+        mainElem.appendChild(cardsContainer)
+    }
     const countryDetailsPage = document.querySelector("#countryDetailsPage")
     if (countryDetailsPage) countryDetailsPage.remove()
     renderCards(app)

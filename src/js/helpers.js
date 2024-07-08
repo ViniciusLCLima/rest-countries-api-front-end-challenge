@@ -62,3 +62,8 @@ export const handleCountryClick = e =>{
     Window.vLCountriesAPI.lastVisitedPages.push(Window.vLCountriesAPI.actualPage)
     Window.vLCountriesAPI.actualPage = newUrl.pathname
 }
+
+export const setLoadingCircleContainerHeight = (loadingCircleContainer)=>{
+    const HEADER_HEIGHT = document.querySelector('header').offsetHeight
+    loadingCircleContainer.style.height = `${loadingCircleContainer.offsetHeight - HEADER_HEIGHT}px`
+}

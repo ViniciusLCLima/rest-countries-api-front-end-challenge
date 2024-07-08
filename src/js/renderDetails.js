@@ -14,12 +14,10 @@ const getCountry = (countryCommonName)=>{
     return Window.vLCountriesAPI.countries.find(country => country.name.common.toLowerCase() === countryCommonName.toLowerCase())
 }
 
-const renderDetails = (countryCommonName, app, hello) => {
+const renderDetails = (countryCommonName, app) => {
     document.querySelector('Form').setAttribute('hidden', 'hidden')
     const cardsContainer = document.querySelector('#cardsContainer')
-    if (cardsContainer){
-        cardsContainer.remove()
-    }
+    if (cardsContainer) cardsContainer.remove()
     let countryDetailsPage = document.querySelector('#countryDetailsPage')
     if (countryDetailsPage){
         countryDetailsPage.replaceChildren()
@@ -126,7 +124,14 @@ const renderDetails = (countryCommonName, app, hello) => {
     }
     countryInfosContainer.appendChild(borderCountriesDiv)
     countryDetailsDiv.appendChild(countryInfosContainer)
-    main.appendChild(countryDetailsPage)
+    const loadingCircleContainer = document.querySelector('#loadingCircleContainer')
+    if (loadingCircleContainer){
+        loadingCircleContainer.addEventListener('transitionend', ()=>{
+            main.appendChild(countryDetailsPage)        
+        })
+    } else{
+        main.appendChild(countryDetailsPage)
+    }
 }
 
 export default renderDetails
