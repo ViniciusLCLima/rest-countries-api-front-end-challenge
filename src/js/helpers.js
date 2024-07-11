@@ -67,3 +67,16 @@ export const setLoadingCircleContainerHeight = (loadingCircleContainer)=>{
     const HEADER_HEIGHT = document.querySelector('header').offsetHeight
     loadingCircleContainer.style.height = `${loadingCircleContainer.offsetHeight - HEADER_HEIGHT}px`
 }
+
+export const getNewEl = (tag, id, classes, textContent, elToAppendIt) =>{
+    const el = document.createElement(tag)
+    if (id) el.id = id
+    if (classes){
+        for (const aClass of classes){
+            el.classList.add(aClass)
+        }
+    }
+    if (textContent) el.textContent = textContent
+    if (elToAppendIt) elToAppendIt.appendChild(el)
+    return el
+}

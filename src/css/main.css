@@ -206,6 +206,8 @@ main>form>div>ul{
     height:100%;
     width: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
     #loadingCircleContainer.loaded-appearance{
@@ -221,7 +223,6 @@ main>form>div>ul{
     height: var(--loadingCircleWidth);
     width: var(--loadingCircleWidth);
     border: 1px solid;
-    margin:auto
 }
     #loadingCircle:not([hidden]){
         animation:
@@ -255,6 +256,15 @@ main>form>div>ul{
             height: var(--width);
             border: calc((0.1 / 50) * var(--loadingCircleWidth)) solid black
         }
+        
+    #loadingCircleContainer>.loading-msg{
+        position: absolute;
+        margin-top: 10em;
+        max-width: 23em;
+        text-align: center;
+        font-weight: 500;
+        animation: linear .5s 1 emerge;
+    }
 
 /* fonts */
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300..800;1,6..12,300&display=swap');
