@@ -2,7 +2,7 @@ import {renderCards} from './home-page-rendering.js'
 
 const searchInput = document.querySelector('#searchInput')
 const selectBtn = document.querySelector('#regionFilterSelect .select-btn')
-const selectBtnSpan = selectBtn.childNodes[1]
+const selectBtnSpan = selectBtn.childNodes[0]
 const selectOptionsContainer = document.querySelector('#regionFilterSelect .select-options')
 const selectOptions = document.querySelectorAll('#regionFilterSelect .select-options>*>input')
 const regions = ['Europe', 'Americas', 'Africa', 'Asia', 'Oceania']

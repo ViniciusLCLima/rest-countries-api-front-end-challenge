@@ -17,18 +17,6 @@ export const getCountryImg = (country, width, height)=>{
     img.setAttribute('height', height)
     img.setAttribute('alt', country.flags.alt)
     img.addEventListener('error', e=>this.src = country.flags.png)
-    // svg.setAttribute('aria-label', `${titleStr} ${country.flags.alt}`)
-    // svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
-    // svg.setAttribute('role', 'img')
-    // svg.setAttribute('width', '265px')
-    // svg.setAttribute('height', '160px')
-    // svg.appendChild(title)
-    // svg.appendChild(desc)
-    // svg.appendChild(img)
-    // img.setAttribute('href', country.flags.svg)
-    // img.setAttribute('width', '265px')
-    // img.setAttribute('height', '160px')
-    // img.setAttribute('src', country.flags.png)
     return img
 }
 

@@ -6,15 +6,15 @@
       },
       {
         "source": "/css/main.([a-z0-9]+).css",
-        "destination": "main.ce28c290927aaf8f433f.css"
+        "destination": "main.0e387b45f266d3c63e8b.css"
       },
       {
         "source": "countries/main.([a-z0-9]+).css",
-        "destination": "main.ce28c290927aaf8f433f.css"
+        "destination": "main.0e387b45f266d3c63e8b.css"
       },
       {
         "source": "/(.*)",
-        "destination": "index.ce28c290927aaf8f433f.html"
+        "destination": "index.0e387b45f266d3c63e8b.html"
       }
     ],
     "outputDirectory":"./dist"
