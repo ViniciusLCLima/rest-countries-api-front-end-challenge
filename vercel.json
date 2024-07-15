@@ -1,21 +1,21 @@
 {
     "rewrites": [
       {
-        "source": "/countries/main.js",
-        "destination": "main.js"
+        "source": "/countries/main.([a-z0-9]+).js",
+        "destination": "main.([a-z0-9]+).js"
       },
       {
-        "source": "/css/main.css",
-        "destination": "main.css"
+        "source": "/css/main.([a-z0-9]+).css",
+        "destination": "main.ce28c290927aaf8f433f.css"
       },
       {
-        "source": "countries/main.css",
-        "destination": "main.css"
+        "source": "countries/main.([a-z0-9]+).css",
+        "destination": "main.ce28c290927aaf8f433f.css"
       },
       {
         "source": "/(.*)",
-        "destination": "index.html"
+        "destination": "index.ce28c290927aaf8f433f.html"
       }
     ],
-    "outputDirectory":"./build"
+    "outputDirectory":"./dist"
   }

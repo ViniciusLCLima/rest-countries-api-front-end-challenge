@@ -18,3 +18,4 @@
 /build
 src/js/apidata.js
 .vercel
+/dist

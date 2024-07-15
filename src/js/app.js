@@ -1,9 +1,9 @@
-import getCountries from "./getCountries.js"
+import getCountries from "./get-countries.js"
 import {renderHome, renderCards} from "./home-page-rendering.js"
-import settleFilter from "./settleFilter.js"
-import renderDetails from "./renderDetails.js"
+import settleFilter from "./settle-filter.js"
+import renderDetails from "./details-page.js"
 // import countries from "./apidata.js" This is for testing purposes only.
-import  makeSearchInputBeFocusedOnAnyBarClick from "./utilListeners.js"
+import  makeSearchInputBeFocusedOnAnyBarClick from "./util-listeners.js"
 import {getCountryCommonNameFromDetailsUrl, setLoadingCircleContainerHeight, getNewEl} from "./helpers.js"
 import settleModeChanging from "./settle-modes.js"
 

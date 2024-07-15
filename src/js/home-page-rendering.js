@@ -1,5 +1,5 @@
 import {getCountryImg, getCountryInfosContainer, handleCountryClick} from './helpers.js'
-import renderDetails from './renderDetails.js'
+import renderDetails from './details-page.js'
 
 
 const cardsContainer = document.createElement('section')
