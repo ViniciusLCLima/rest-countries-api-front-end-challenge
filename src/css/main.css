@@ -575,8 +575,8 @@ form {
     }
 
     #cardsContainer:not(#cardsContainer:has(#loadingCircle)):after{
-        content:"";
-        flex: auto
+        content:var(--cardsContainerAfterContent);
+        width: var(--cardsContainerAfterWidth)
     }
 }
 

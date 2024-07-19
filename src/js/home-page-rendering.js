@@ -43,12 +43,36 @@ const getFilteredCountries = () =>{
     return filteredCountries;
 }
 
+export const fixCardsContainerAfterWidthIfNeeded = ()=>{
+    const cardsContainerComputedStyle = window.getComputedStyle(cardsContainer)
+    if (cardsContainerComputedStyle.justifyContent === "space-between" && cardsContainer.childNodes.length>0){
+        const CARDS_WIDTH = parseFloat(window.getComputedStyle(cardsContainer.childNodes[0]).width)
+        const CARDS_CONTAINER_MIN_COLUMN_GAP = parseFloat(cardsContainerComputedStyle.columnGap)
+        const CARD_PLUS_COLUMN_GAP = CARDS_CONTAINER_MIN_COLUMN_GAP + CARDS_WIDTH
+        const CARDS_CONTAINER_WIDTH = parseFloat(cardsContainerComputedStyle.width)
+        const NUM_OF_CARDS_IN_EACH_ROW = Math.floor(((CARDS_CONTAINER_WIDTH - CARDS_WIDTH)/(CARD_PLUS_COLUMN_GAP))) + 1
+        const NUM_OF_COLUMN_GAPS_IN_EACH_ROW = NUM_OF_CARDS_IN_EACH_ROW - 1
+        const ACTUAL_COLUMN_GAP = (CARDS_CONTAINER_WIDTH - (NUM_OF_CARDS_IN_EACH_ROW * CARDS_WIDTH))/ NUM_OF_COLUMN_GAPS_IN_EACH_ROW
+        const REMAINDER_CARDS = cardsContainer.childNodes.length % NUM_OF_CARDS_IN_EACH_ROW
+        if (REMAINDER_CARDS == 0){
+            document.documentElement.style.setProperty('--cardsContainerAfterContent', "none")    
+        } else{
+            const LAST_ROW_MISSING_CARDS_NUM = NUM_OF_CARDS_IN_EACH_ROW - REMAINDER_CARDS
+            const LAST_ROW_MISSING_COLUMNS_NUM = LAST_ROW_MISSING_CARDS_NUM - 1
+            const AFTER_ELEMENT_WIDTH = LAST_ROW_MISSING_CARDS_NUM * CARDS_WIDTH + ACTUAL_COLUMN_GAP * LAST_ROW_MISSING_COLUMNS_NUM
+            document.documentElement.style.setProperty('--cardsContainerAfterWidth', `${AFTER_ELEMENT_WIDTH}px`)
+            document.documentElement.style.setProperty('--cardsContainerAfterContent', "''") 
+        }
+    }
+}
+
 export const renderCards = (app) =>{
     const countries = getFilteredCountries()
     if (cardsContainer.hasChildNodes()) cardsContainer.replaceChildren()
     countries.forEach(country=>{
         cardsContainer.appendChild(getCard(country, app))
     })
+    fixCardsContainerAfterWidthIfNeeded()
 }
 
 export const renderHome = (app) =>{
@@ -65,5 +89,6 @@ export const renderHome = (app) =>{
     }
     const countryDetailsPage = document.querySelector("#countryDetailsPage")
     if (countryDetailsPage) countryDetailsPage.remove()
+    window.addEventListener('resize', fixCardsContainerAfterWidthIfNeeded)
     renderCards(app)
 }
