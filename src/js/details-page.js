@@ -28,6 +28,7 @@ const renderDetails = (countryCommonName, app) => {
     const main = document.querySelector('main')
     const backBtn = document.createElement('a')
     backBtn.classList.add('btn')
+    backBtn.id = 'backBtn'
     const backBtnContainer = document.createElement('div')
     const backArrow = document.createElement('i')
     backArrow.classList.add('fa-solid', 'fa-arrow-left-long')

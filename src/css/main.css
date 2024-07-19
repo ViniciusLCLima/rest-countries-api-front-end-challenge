@@ -49,8 +49,8 @@ main>*>div>input{
 
 .select-container>.select-btn:hover,
 .select-container>.select-btn:focus,
-#countryDetailsPage>a:hover,
-#countryDetailsPage>a:focus,
+#countryDetailsPage #backBtn:hover,
+#countryDetailsPage #backBtn:focus,
 .border-country-btn:hover,
 .border-country-btn:focus{
         background-color: var(--elementsColorTint);
