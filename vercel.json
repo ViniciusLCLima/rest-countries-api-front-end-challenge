@@ -1,20 +1,20 @@
 {
     "rewrites": [
       {
-        "source": "/countries/main.([a-z0-9]+).js",
-        "destination": "main.([a-z0-9]+).js"
+        "source": "/countries/main.js",
+        "destination": "main.js"
       },
       {
-        "source": "/css/main.([a-z0-9]+).css",
-        "destination": "main.0e387b45f266d3c63e8b.css"
+        "source": "/css/main.css",
+        "destination": "main.css"
       },
       {
-        "source": "countries/main.([a-z0-9]+).css",
-        "destination": "main.0e387b45f266d3c63e8b.css"
+        "source": "countries/main.css",
+        "destination": "main.css"
       },
       {
         "source": "/(.*)",
-        "destination": "index.0e387b45f266d3c63e8b.html"
+        "destination": "index.html"
       }
     ],
     "outputDirectory":"./dist"

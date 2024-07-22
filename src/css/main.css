@@ -137,7 +137,6 @@ main>form>div>ul{
         list-style-type:none;
         z-index:2000;
         opacity:0;
-        overflow: hidden;
         max-height: 0px;
         transition:
         max-height 0.2s,
@@ -352,6 +351,7 @@ form {
         align-items: center;
     }
 
+    .select-container>.select-options>li:has(input:focus-visible),
     form>div:nth-child(2):has(input:focus-visible){
         outline: chocolate ridge 2px;
     }
