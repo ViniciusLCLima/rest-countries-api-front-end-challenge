@@ -1,10 +1,11 @@
 import {renderCards} from './home-page-rendering.js'
 
+const selectOptionsElsSelector = '#regionFilterSelect .select-options>*>input'
 const searchInput = document.querySelector('#searchInput')
 const selectBtn = document.querySelector('#regionFilterSelect .select-btn')
 const selectBtnSpan = selectBtn.childNodes[0]
 const selectOptionsContainer = document.querySelector('#regionFilterSelect .select-options')
-const selectOptions = document.querySelectorAll('#regionFilterSelect .select-options>*>input')
+const selectOptions = document.querySelectorAll(selectOptionsElsSelector)
 const regions = ['Europe', 'Americas', 'Africa', 'Asia', 'Oceania']
 
 
@@ -34,7 +35,12 @@ const settleFilter = (urlParams, renderCards, app) =>{
     searchInput.value = Window.vLCountriesAPI.filter.name
     const regionParam = urlParams.get('region')
     Window.vLCountriesAPI.filter.region = (regions.includes(regionParam))? regionParam: undefined
-    selectBtnSpan.textContent = (Window.vLCountriesAPI.filter.region) ? Window.vLCountriesAPI.filter.region: selectBtnSpan.textContent
+    if (Window.vLCountriesAPI.filter.region) {
+        selectBtnSpan.textContent = regionParam
+        selectBtn.value = regionParam
+        const regionSelectOptionEl = document.querySelector(`${selectOptionsElsSelector}[value=${regionParam}]`)
+        regionSelectOptionEl.classList.add('selected')
+    }
     const form = document.querySelector('form')
     form.addEventListener('submit', e => {
         handleFilterChange(renderCards, app)
@@ -50,6 +56,9 @@ const settleFilter = (urlParams, renderCards, app) =>{
             selectBtnSpan.textContent = e.target.value
             selectBtn.value = e.target.value
             selectOptionsContainer.classList.remove('open')
+            const precedingSelecetedOptionEl = document.querySelector(selectOptionsElsSelector + '.selected')
+            if (precedingSelecetedOptionEl) precedingSelecetedOptionEl.classList.remove('selected')
+            e.target.classList.add('selected')
             handleFilterChange(renderCards, app)
         })
     }

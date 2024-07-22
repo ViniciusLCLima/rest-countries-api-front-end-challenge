@@ -58,7 +58,7 @@ main>*>div>input{
     }
 
 .select-container>.select-options>li>input:hover,
-.select-container>.select-options>li>input:focus,
+.select-container>.select-options>li>input.selected,
     header> button:hover,
     header> button:focus {
         background-color: var(--elementsColorTint);
