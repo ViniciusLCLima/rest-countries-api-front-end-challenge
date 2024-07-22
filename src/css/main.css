@@ -74,7 +74,6 @@ header> button{
 header,
 form>div:nth-child(2),
 form>.select-container>*:not(label),
-#cardsContainer>a,
 #countryDetailsPage>a {
     transition: 
         background-color var(--modeTransitionTime),
@@ -407,7 +406,15 @@ form {
         overflow: hidden;
         text-decoration: none;
         color: var(--textColor);
+        transition: 
+        background-color var(--modeTransitionTime),
+        color var(--modeTransitionTime),
+        scale 0.3s;
     }
+        #cardsContainer>a:hover{
+            scale: 1.04;
+            transition: scale 0.4s
+        }
 
         #cardsContainer>a>img{
             width:100%;
