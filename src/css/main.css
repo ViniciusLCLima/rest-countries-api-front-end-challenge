@@ -48,11 +48,11 @@ main>*>div>input{
 /* Buttons hover and focus effect*/
 
 .select-container>.select-btn:hover,
-.select-container>.select-btn:focus,
+.select-container>.select-btn:focus-visible,
 #countryDetailsPage #backBtn:hover,
-#countryDetailsPage #backBtn:focus,
+#countryDetailsPage #backBtn:focus-visible,
 .border-country-btn:hover,
-.border-country-btn:focus{
+.border-country-btn:focus-visible{
         background-color: var(--elementsColorTint);
         transition: background-color var(--hoverTransitionTime);
     }
@@ -60,7 +60,7 @@ main>*>div>input{
 .select-container>.select-options>li>input:hover,
 .select-container>.select-options>li>input.selected,
     header> button:hover,
-    header> button:focus {
+    header> button:focus-visible {
         background-color: var(--elementsColorTint);
     }   
     
