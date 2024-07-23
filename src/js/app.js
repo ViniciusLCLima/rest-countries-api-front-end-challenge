@@ -2,6 +2,8 @@ import getCountries from "./get-countries.js"
 import {renderHome, renderCards, fixCardsContainerAfterWidthIfNeeded} from "./home-page-rendering.js"
 import settleFilter from "./settle-filter.js"
 import renderDetails from "./details-page.js"
+import "../favicon.ico"
+import "../favicon.svg"
 // import countries from "./apidata.js" This is for testing purposes only.
 import  makeSearchInputBeFocusedOnAnyBarClick from "./util-listeners.js"
 import {getCountryCommonNameFromDetailsUrl, setLoadingCircleContainerHeight, getNewEl} from "./helpers.js"

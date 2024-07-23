@@ -5,11 +5,18 @@ module.exports = {
     plugins:[new MiniCssExtractPlugin({
             filename: "[name].[hash].css"
     })],
+    output:{
+        assetModuleFilename: '[name][ext]'
+    },
     module:{
         rules:[
             {
                 test: /\.css$/,
                 use:[MiniCssExtractPlugin.loader, 'css-loader']
+            },
+            {
+                test: /\.(ico|svg)$/,
+                type: 'asset/resource'
             }
         ]
     }

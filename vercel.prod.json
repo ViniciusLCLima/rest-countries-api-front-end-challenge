@@ -13,6 +13,10 @@
         "destination": "main.60f481904e0f5da125a2.css"
       },
       {
+        "source": "/favicon.ico",
+        "destination": "favico.ico"
+      },
+      {
         "source": "/(.*)",
         "destination": "index.60f481904e0f5da125a2.html"
       }

@@ -7,7 +7,8 @@ module.exports = merge({
         template: './src/template.html',
         filename: 'index.html',
         inject: 'body',
-    })],
+    }),
+],
     devtool: 'source-map',
     mode: 'development',
     output:{
