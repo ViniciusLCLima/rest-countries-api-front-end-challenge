@@ -1,8 +1,20 @@
-import {getCountryImg, getCountryInfosContainer, handleCountryClick} from './helpers.js'
+import {getCountryImgEl, getCountryInfosContainer, handleCountryClick, getNewEl, getImgEl} from './helpers.js'
 import renderDetails from './details-page.js'
+import notFoundIcon from '../sad-emoji.svg'
 
 
 const cardsContainer = document.createElement('section')
+
+const addNoCardsFoundMsg = () => {
+    const noCardsFoundMsgContainer = getNewEl('p', 'noCountriesFoundMsg', undefined,undefined, cardsContainer)
+    const notFoundIconEl = getImgEl(notFoundIcon,'Black and white sad face emoji', noCardsFoundMsgContainer)
+    const noCardsFoundMsg = 'No country found.'
+    noCardsFoundMsgContainer.append(noCardsFoundMsg)
+}
+
+const removeCardsContainerAfterEl = () =>{
+    document.documentElement.style.setProperty('--cardsContainerAfterContent', "none")
+}
 
 const getCard = (country, app)=>{
     const card = document.createElement('a')
@@ -10,7 +22,7 @@ const getCard = (country, app)=>{
         handleCountryClick(e)
         renderDetails(country.name.common, app)
     })
-    const flag = getCountryImg(country, '265px', '160px')
+    const flag = getCountryImgEl(country, '265px', '160px')
     card.appendChild(flag)
     const textContainer = document.createElement('div')
     const name = document.createElement('h2')
@@ -55,24 +67,35 @@ export const fixCardsContainerAfterWidthIfNeeded = ()=>{
         const ACTUAL_COLUMN_GAP = (CARDS_CONTAINER_WIDTH - (NUM_OF_CARDS_IN_EACH_ROW * CARDS_WIDTH))/ NUM_OF_COLUMN_GAPS_IN_EACH_ROW
         const REMAINDER_CARDS = cardsContainer.childNodes.length % NUM_OF_CARDS_IN_EACH_ROW
         if (REMAINDER_CARDS == 0){
-            document.documentElement.style.setProperty('--cardsContainerAfterContent', "none")    
+            removeCardsContainerAfterEl()
         } else{
             const LAST_ROW_MISSING_CARDS_NUM = NUM_OF_CARDS_IN_EACH_ROW - REMAINDER_CARDS
             const LAST_ROW_MISSING_COLUMNS_NUM = LAST_ROW_MISSING_CARDS_NUM - 1
             const AFTER_ELEMENT_WIDTH = LAST_ROW_MISSING_CARDS_NUM * CARDS_WIDTH + ACTUAL_COLUMN_GAP * LAST_ROW_MISSING_COLUMNS_NUM
             document.documentElement.style.setProperty('--cardsContainerAfterWidth', `${AFTER_ELEMENT_WIDTH}px`)
-            document.documentElement.style.setProperty('--cardsContainerAfterContent', "''") 
         }
     }
 }
 
-export const renderCards = (app) =>{
-    const countries = getFilteredCountries()
-    if (cardsContainer.hasChildNodes()) cardsContainer.replaceChildren()
-    countries.forEach(country=>{
+export const renderCards = (filteredCountries, app) =>{
+    filteredCountries.forEach(country=>{
         cardsContainer.appendChild(getCard(country, app))
     })
     fixCardsContainerAfterWidthIfNeeded()
+}
+
+export const settleCardsSection = (app) =>{
+    if (cardsContainer.hasChildNodes()) cardsContainer.replaceChildren()
+    const filteredCountries = getFilteredCountries()
+    if (filteredCountries.length == 0){
+        addNoCardsFoundMsg()
+        removeCardsContainerAfterEl()  
+        window.removeEventListener('resize', fixCardsContainerAfterWidthIfNeeded)
+    } else {
+        renderCards(filteredCountries, app)
+        document.documentElement.style.setProperty('--cardsContainerAfterContent', "''")
+        window.addEventListener('resize', fixCardsContainerAfterWidthIfNeeded)
+    }
 }
 
 export const renderHome = (app) =>{
@@ -89,6 +112,5 @@ export const renderHome = (app) =>{
     }
     const countryDetailsPage = document.querySelector("#countryDetailsPage")
     if (countryDetailsPage) countryDetailsPage.remove()
-    window.addEventListener('resize', fixCardsContainerAfterWidthIfNeeded)
-    renderCards(app)
+    settleCardsSection(app)
 }

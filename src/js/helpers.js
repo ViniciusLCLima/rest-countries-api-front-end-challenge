@@ -5,19 +5,20 @@ export const getCountryCommonNameFromDetailsUrl = (countryDetailsDecodedPathName
     return REQUESTED_COUNTRY_NAME
 }
 
-export const getCountryImg = (country, width, height)=>{
-    const img = document.createElement('img')
-    const titleStr = `${country.name.official}'s flag.`
-    const title = document.createElement('title')
-    const desc = document.createElement('desc')
-    title.textContent = titleStr
-    desc.textContent = country.flags.alt
-    img.setAttribute('src', country.flags.svg)
-    img.setAttribute('width', width)
-    img.setAttribute('height', height)
-    img.setAttribute('alt', country.flags.alt)
-    img.addEventListener('error', e=>this.src = country.flags.png)
-    return img
+export const getCountryImgEl = (country, width, height)=>{
+    const imgEl = getImgEl(country.flags.svg, country.flags.alt)
+    imgEl.setAttribute('width', width)
+    imgEl.setAttribute('height', height)
+    imgEl.addEventListener('error', e=>e.target.setAttribute('src', country.flags.png))
+    return imgEl
+}
+
+export const getImgEl = (src, alt, elToAppendIt)=>{
+    const imgEl = document.createElement('img')
+    imgEl.setAttribute('src', src)
+    if (alt) imgEl.setAttribute('alt', alt)
+    if (elToAppendIt) elToAppendIt.appendChild(imgEl)
+    return imgEl
 }
 
 export const getCountryInfosContainer = (countryInfos) =>{

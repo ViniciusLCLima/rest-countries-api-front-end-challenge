@@ -1,4 +1,4 @@
-import {getCountryImg, getCountryInfosContainer, getCountryCommonNameFromDetailsUrl } from './helpers.js'
+import {getCountryImgEl, getCountryInfosContainer, getCountryCommonNameFromDetailsUrl } from './helpers.js'
 import {handleCountryClick} from './helpers.js'
 
 const getCountryNativeName = (country) =>{
@@ -50,7 +50,7 @@ const renderDetails = (countryCommonName, app) => {
     const countryDetailsDiv = document.createElement('div')
     countryDetailsPage.appendChild(countryDetailsDiv)
     const country = getCountry(countryCommonName)
-    const img = getCountryImg(country)
+    const img = getCountryImgEl(country)
     countryDetailsDiv.appendChild(img)
     const header = document.createElement('h2')
     header.textContent = country.name.common

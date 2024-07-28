@@ -1,4 +1,4 @@
-import {renderCards} from './home-page-rendering.js'
+import {settleCardsSection} from './home-page-rendering.js'
 
 const selectOptionsElsSelector = '#regionFilterSelect .select-options>*>input'
 const searchInput = document.querySelector('#searchInput')
@@ -18,7 +18,7 @@ const toggleSelectOptions = () =>{
     }
 }
 
-const handleFilterChange = (renderCards, app)=>{
+const handleFilterChange = (app)=>{
     const url = new URL(location)
     const regionFilter = (selectBtnSpan.textContent==='Filter by region:')? '': selectBtnSpan.textContent
     url.searchParams.set('name', searchInput.value)
@@ -26,10 +26,10 @@ const handleFilterChange = (renderCards, app)=>{
     window.history.pushState({}, "", url)
     Window.vLCountriesAPI.filter.name = searchInput.value
     Window.vLCountriesAPI.filter.region = regionFilter
-    renderCards(app)
+    settleCardsSection(app)
 }
 
-const settleFilter = (urlParams, renderCards, app) =>{
+const settleFilter = (urlParams, app) =>{
     Window.vLCountriesAPI.filter = {}
     Window.vLCountriesAPI.filter.name = urlParams.get('name')
     searchInput.value = Window.vLCountriesAPI.filter.name
@@ -43,7 +43,7 @@ const settleFilter = (urlParams, renderCards, app) =>{
     }
     const form = document.querySelector('form')
     form.addEventListener('submit', e => {
-        handleFilterChange(renderCards, app)
+        handleFilterChange(app)
         e.preventDefault()
     })
     selectBtn.addEventListener('click', e => {
@@ -59,10 +59,10 @@ const settleFilter = (urlParams, renderCards, app) =>{
             const precedingSelecetedOptionEl = document.querySelector(selectOptionsElsSelector + '.selected')
             if (precedingSelecetedOptionEl) precedingSelecetedOptionEl.classList.remove('selected')
             e.target.classList.add('selected')
-            handleFilterChange(renderCards, app)
+            handleFilterChange(app)
         })
     }
-    searchInput.addEventListener('change', e => handleFilterChange(renderCards))
+    searchInput.addEventListener('change', e => handleFilterChange(app))
 }
 
 export default settleFilter

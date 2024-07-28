@@ -441,6 +441,17 @@ form {
                 margin-bottom:5px
             }
 
+#noCountriesFoundMsg{
+    margin: auto;
+    text-align:center;
+    font-size: 1.3em
+}
+
+#noCountriesFoundMsg>img{
+    display: block;
+    width: 2.3em;
+    margin: auto auto 5px
+}
 
 
 /* Country details */

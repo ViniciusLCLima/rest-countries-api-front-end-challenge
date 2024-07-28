@@ -20,7 +20,7 @@ export default async function app(cameFromThisSiteBackBtn){
     
     const url = new URL(location)
     if (!Window.vLCountriesAPI.isFilterSettled){
-        settleFilter(url.searchParams, renderCards, app)
+        settleFilter(url.searchParams, app)
         Window.vLCountriesAPI.isFilterSettled = true
     }
 
