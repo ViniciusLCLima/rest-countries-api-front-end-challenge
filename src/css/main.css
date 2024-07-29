@@ -397,7 +397,9 @@ form {
     row-gap: 40px;
     column-gap: 75px;
     flex-grow: 1;
-    animation: 1s 1 emerge;
+    opacity: 0;
+    /* animation: 1s 1 emerge; */
+    transition: opacity .5s
 }
 
     #cardsContainer>a{

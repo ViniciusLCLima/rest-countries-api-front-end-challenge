@@ -1,5 +1,5 @@
 import getCountries from "./get-countries.js"
-import {renderHome, renderCards, fixCardsContainerAfterWidthIfNeeded} from "./home-page-rendering.js"
+import {renderHome, addCountryCardsToContainer, fixCardsContainerAfterWidthIfNeeded} from "./home-page-rendering.js"
 import settleFilter from "./settle-filter.js"
 import renderDetails from "./details-page.js"
 import "../favicon.ico"

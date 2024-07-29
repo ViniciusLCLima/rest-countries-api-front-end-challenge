@@ -1,4 +1,5 @@
 import {settleCardsSection} from './home-page-rendering.js'
+import {getEmergeAnimation} from './helpers.js'
 
 const selectOptionsElsSelector = '#regionFilterSelect .select-options>*>input'
 const searchInput = document.querySelector('#searchInput')
@@ -18,7 +19,19 @@ const toggleSelectOptions = () =>{
     }
 }
 
-const handleFilterChange = (app)=>{
+const makeFilterChangeAnimation = async ()=>{
+    const cardsContainer = document.querySelector('#cardsContainer')
+    const vanishAnimationTime = 300
+    const emergeAnimationKeyframes = {opacity: [0,1]}
+    const disappearingAnimation = cardsContainer.animate(emergeAnimationKeyframes, {
+        duration: vanishAnimationTime,
+        fill: 'forwards',
+        direction: 'reverse'
+    })
+    await disappearingAnimation.finished
+}
+
+const handleFilterChange = async (app)=>{
     const url = new URL(location)
     const regionFilter = (selectBtnSpan.textContent==='Filter by region:')? '': selectBtnSpan.textContent
     url.searchParams.set('name', searchInput.value)
@@ -26,7 +39,19 @@ const handleFilterChange = (app)=>{
     window.history.pushState({}, "", url)
     Window.vLCountriesAPI.filter.name = searchInput.value
     Window.vLCountriesAPI.filter.region = regionFilter
-    settleCardsSection(app)
+    await makeFilterChangeAnimation()
+    settleCardsSection(app, true)
+}
+
+const handleRegionSelection = (e, app) =>{
+    e.preventDefault()
+    selectBtnSpan.textContent = e.target.value
+    selectBtn.value = e.target.value
+    selectOptionsContainer.classList.remove('open')
+    const precedingSelecetedOptionEl = document.querySelector(selectOptionsElsSelector + '.selected')
+    if (precedingSelecetedOptionEl) precedingSelecetedOptionEl.classList.remove('selected')
+    e.target.classList.add('selected')
+    handleFilterChange(app)
 }
 
 const settleFilter = (urlParams, app) =>{
@@ -43,7 +68,6 @@ const settleFilter = (urlParams, app) =>{
     }
     const form = document.querySelector('form')
     form.addEventListener('submit', e => {
-        handleFilterChange(app)
         e.preventDefault()
     })
     selectBtn.addEventListener('click', e => {
@@ -52,14 +76,7 @@ const settleFilter = (urlParams, app) =>{
     })
     for (const option of selectOptions){
         option.addEventListener('click', e=>{
-            e.preventDefault()
-            selectBtnSpan.textContent = e.target.value
-            selectBtn.value = e.target.value
-            selectOptionsContainer.classList.remove('open')
-            const precedingSelecetedOptionEl = document.querySelector(selectOptionsElsSelector + '.selected')
-            if (precedingSelecetedOptionEl) precedingSelecetedOptionEl.classList.remove('selected')
-            e.target.classList.add('selected')
-            handleFilterChange(app)
+            handleRegionSelection(e, app)
         })
     }
     searchInput.addEventListener('change', e => handleFilterChange(app))

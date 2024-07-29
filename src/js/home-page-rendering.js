@@ -77,14 +77,13 @@ export const fixCardsContainerAfterWidthIfNeeded = ()=>{
     }
 }
 
-export const renderCards = (filteredCountries, app) =>{
+export const addCountryCardsToContainer = (filteredCountries, app) =>{
     filteredCountries.forEach(country=>{
         cardsContainer.appendChild(getCard(country, app))
     })
-    fixCardsContainerAfterWidthIfNeeded()
 }
 
-export const settleCardsSection = (app) =>{
+export const settleCardsSection = (app, isOnFilter) =>{
     if (cardsContainer.hasChildNodes()) cardsContainer.replaceChildren()
     const filteredCountries = getFilteredCountries()
     if (filteredCountries.length == 0){
@@ -92,10 +91,23 @@ export const settleCardsSection = (app) =>{
         removeCardsContainerAfterEl()  
         window.removeEventListener('resize', fixCardsContainerAfterWidthIfNeeded)
     } else {
-        renderCards(filteredCountries, app)
+        addCountryCardsToContainer(filteredCountries, app)
+        fixCardsContainerAfterWidthIfNeeded()
         document.documentElement.style.setProperty('--cardsContainerAfterContent', "''")
         window.addEventListener('resize', fixCardsContainerAfterWidthIfNeeded)
     }
+    if (isOnFilter) cardsContainer.animate({
+        opacity:[0,1]
+    }, {
+        fill: 'forwards',
+        duration: 300
+    })
+    else  cardsContainer.animate({
+        opacity:[0,1]
+    }, {
+        fill: 'forwards',
+        duration: 500
+    })
 }
 
 export const renderHome = (app) =>{
